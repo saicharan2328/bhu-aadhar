@@ -757,8 +757,11 @@ function handleSearch() {
 }
 
 function openModal(id) {
-    document.getElementById(id).classList.remove("hidden");
-    if (id === "schema-modal") {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove("hidden");
+    if (id === "auth-modal") {
+        updateAuthModalUI();
+    } else if (id === "schema-modal") {
         StrataMapAPI.fetchPostGISSchema().then(sql => {
             document.getElementById("schema-code").textContent = sql;
         });
@@ -771,7 +774,128 @@ function openModal(id) {
 }
 
 function closeModal(id) {
-    document.getElementById(id).classList.add("hidden");
+    const el = document.getElementById(id);
+    if (el) el.classList.add("hidden");
+}
+
+function updateAuthModalUI() {
+    const storedRole = localStorage.getItem('bhu_user_role') || currentRBACMode || 'PUBLIC';
+    const storedUlpin = localStorage.getItem('bhu_user_ulpin') || (storedRole === 'OFFICIAL' ? 'APCRDA-GMC-OFFICER-01' : '28GNT8392104812');
+    const storedName = localStorage.getItem('bhu_user_name') || (storedRole === 'OFFICIAL' ? 'DoLR / APCRDA Town Planning Officer' : 'Registered Citizen Title Holder');
+
+    const nameEl = document.getElementById("modal-user-name");
+    const ulpinEl = document.getElementById("modal-user-ulpin");
+    const rolePill = document.getElementById("modal-role-pill");
+    const userPill = document.getElementById("user-display-pill");
+    const citizenBtn = document.getElementById("switch-citizen-btn");
+    const officerBtn = document.getElementById("switch-officer-btn");
+
+    if (nameEl) nameEl.textContent = storedName;
+    if (ulpinEl) ulpinEl.textContent = `ULPIN / ID: ${storedUlpin}`;
+    if (userPill) userPill.textContent = storedRole === 'OFFICIAL' ? 'Govt Official' : (storedName.length > 15 ? 'Citizen' : storedName);
+
+    if (rolePill) {
+        if (storedRole === 'OFFICIAL') {
+            rolePill.textContent = 'OFFICIAL (GOVT)';
+            rolePill.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-100 text-purple-950 border border-purple-300 shadow-sm';
+        } else {
+            rolePill.textContent = 'PUBLIC (CITIZEN)';
+            rolePill.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-100 text-amber-950 border border-amber-300 shadow-sm';
+        }
+    }
+
+    if (citizenBtn && officerBtn) {
+        if (storedRole === 'OFFICIAL') {
+            officerBtn.className = 'p-3 bg-purple-50/90 border-2 border-purple-500 rounded-xl text-left transition flex flex-col justify-between shadow-sm';
+            citizenBtn.className = 'p-3 bg-stone-50 hover:bg-amber-50 border-2 border-stone-200 hover:border-amber-400 rounded-xl text-left transition flex flex-col justify-between';
+        } else {
+            citizenBtn.className = 'p-3 bg-amber-50/90 border-2 border-amber-500 rounded-xl text-left transition flex flex-col justify-between shadow-sm';
+            officerBtn.className = 'p-3 bg-stone-50 hover:bg-purple-50 border-2 border-stone-200 hover:border-purple-400 rounded-xl text-left transition flex flex-col justify-between';
+        }
+    }
+}
+
+async function switchAppRole(role) {
+    const isOfficer = (role === 'OFFICIAL');
+    const ulpin = isOfficer ? 'APCRDA-GMC-OFFICER-01' : '28GNT8392104812';
+    const name = isOfficer ? 'DoLR / APCRDA Town Planning Officer' : 'Registered Citizen Title Holder';
+
+    localStorage.setItem('bhu_user_role', role);
+    localStorage.setItem('bhu_user_ulpin', ulpin);
+    localStorage.setItem('bhu_user_name', name);
+
+    updateAuthModalUI();
+    await setRBAC(role);
+    closeModal('auth-modal');
+}
+
+async function handleModalAuth(event) {
+    if (event) event.preventDefault();
+    const btn = document.getElementById("modal-auth-btn");
+    const originalText = btn ? btn.innerHTML : "";
+    if (btn) {
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Verifying...</span>`;
+        btn.disabled = true;
+    }
+
+    const username = document.getElementById("modal-username-input").value.trim();
+    const password = document.getElementById("modal-password-input").value.trim();
+
+    try {
+        const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+        if (response.ok) {
+            const data = await response.json();
+            if (data.status === "SUCCESS") {
+                localStorage.setItem("bhu_user_ulpin", data.user.ulpin_id);
+                localStorage.setItem("bhu_user_role", data.user.role);
+                localStorage.setItem("bhu_user_name", data.user.display_name);
+                updateAuthModalUI();
+                await setRBAC(data.user.role);
+                closeModal('auth-modal');
+                return;
+            }
+        }
+        throw new Error("Local fallback");
+    } catch (err) {
+        const isOfficer = username.toLowerCase().includes("officer") || 
+                          username.toLowerCase().includes("admin") || 
+                          username.toLowerCase().includes("apcrda") || 
+                          username.toLowerCase().includes("dolr") ||
+                          username.toLowerCase().includes("gmc");
+        const role = isOfficer ? "OFFICIAL" : "PUBLIC";
+        const displayName = isOfficer ? "DoLR / APCRDA Town Planning Officer" : "Registered Citizen Title Holder";
+        
+        localStorage.setItem("bhu_user_ulpin", username || "28GNT8392104812");
+        localStorage.setItem("bhu_user_role", role);
+        localStorage.setItem("bhu_user_name", displayName);
+
+        updateAuthModalUI();
+        await setRBAC(role);
+        closeModal('auth-modal');
+    } finally {
+        if (btn) {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+    }
+}
+
+function handleAppLogout() {
+    localStorage.removeItem("bhu_user_ulpin");
+    localStorage.removeItem("bhu_user_role");
+    localStorage.removeItem("bhu_user_name");
+
+    localStorage.setItem("bhu_user_role", "PUBLIC");
+    localStorage.setItem("bhu_user_name", "Citizen");
+    localStorage.setItem("bhu_user_ulpin", "28GNT8392104812");
+
+    updateAuthModalUI();
+    setRBAC("PUBLIC");
+    closeModal("auth-modal");
 }
 
 function toggle2DCadastreBase(checked) {

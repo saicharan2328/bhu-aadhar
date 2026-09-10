@@ -108,11 +108,11 @@
                 <span class="font-semibold text-[11px]">Registry PDF</span>
             </a>
 
-            <!-- User Auth / Session Link -->
-            <a href="/login" class="warm-header-btn px-2.5 py-1.5 text-xs flex items-center gap-1.5 shadow-sm ml-1" title="Login / Switch Account">
+            <!-- User Auth / Session Modal Trigger -->
+            <button onclick="openModal('auth-modal')" class="warm-header-btn px-2.5 py-1.5 text-xs flex items-center gap-1.5 shadow-sm ml-1" title="Bhu Aadhar User Authentication & Role Management">
                 <i class="fa-solid fa-circle-user text-stone-600 text-sm"></i>
-                <span id="user-display-pill" class="font-semibold text-[11px] hidden xl:inline text-[#78350f]">Citizen</span>
-            </a>
+                <span id="user-display-pill" class="font-semibold text-[11px] text-[#78350f]">Citizen</span>
+            </button>
         </div>
     </header>
 
@@ -772,6 +772,145 @@
                         <i class="fa-solid fa-print"></i> Print Deed
                     </button>
                     <button onclick="closeModal('flat-deed-modal')" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs transition">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 6: BHU-AADHAAR USER AUTH & ROLE MANAGEMENT -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
+        <div class="warm-modal-card w-full max-w-lg rounded-2xl p-6 shadow-2xl border border-[#ded3c2] max-h-[92vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-[#ded3c2] mb-4">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-amber-100 flex items-center justify-center text-[#78350f] shadow-sm">
+                        <i class="fa-solid fa-user-shield text-base"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-base font-bold text-[#3e2723] flex items-center gap-2">
+                            <span>Bhu-Aadhaar User Access</span>
+                            <span class="badge-pill bg-amber-100 text-amber-900 border border-amber-300 text-[10px]">SIH 2026</span>
+                        </h2>
+                        <p class="text-[11px] text-[#786b59]">Role-Based Access Control & Title Verification Gateway</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('auth-modal')" class="text-stone-400 hover:text-stone-700 transition text-lg p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Current Active Session Summary -->
+            <div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-3.5 mb-4 shadow-sm">
+                <div class="text-[10px] font-bold uppercase tracking-wider text-stone-500 mb-1 flex items-center justify-between">
+                    <span>Current Active Session</span>
+                    <span id="auth-session-status-badge" class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-full border border-emerald-300">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>Active</span>
+                    </span>
+                </div>
+                <div class="flex items-center justify-between mt-2">
+                    <div>
+                        <div id="modal-user-name" class="font-bold text-sm text-[#3e2723]">Registered Citizen Title Holder</div>
+                        <div id="modal-user-ulpin" class="text-xs font-mono text-[#78350f]">ULPIN: 28GNT8392104812</div>
+                    </div>
+                    <div id="modal-role-pill" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-200/80 text-amber-950 border border-amber-300 shadow-sm">
+                        PUBLIC (CITIZEN)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fast 1-Click Role Switcher for SIH Judges -->
+            <div class="mb-4">
+                <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-2">
+                    Instant Role Fast-Pass (SIH 2026 Evaluation):
+                </label>
+                <div class="grid grid-cols-2 gap-2.5">
+                    <button 
+                        type="button" 
+                        onclick="switchAppRole('PUBLIC')"
+                        id="switch-citizen-btn"
+                        class="p-3 bg-stone-50 hover:bg-amber-50 border-2 border-stone-200 hover:border-amber-400 rounded-xl text-left transition flex flex-col justify-between group"
+                    >
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-xs text-stone-800 group-hover:text-amber-900">Citizen Mode</span>
+                            <i class="fa-solid fa-user text-emerald-600 text-xs"></i>
+                        </div>
+                        <span class="text-[10px] text-stone-500 leading-tight">Public 3D registry, title deeds, and parcel inspection.</span>
+                    </button>
+
+                    <button 
+                        type="button" 
+                        onclick="switchAppRole('OFFICIAL')"
+                        id="switch-officer-btn"
+                        class="p-3 bg-stone-50 hover:bg-purple-50 border-2 border-stone-200 hover:border-purple-400 rounded-xl text-left transition flex flex-col justify-between group"
+                    >
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-bold text-xs text-stone-800 group-hover:text-purple-900">Govt Official Mode</span>
+                            <i class="fa-solid fa-shield-halved text-purple-600 text-xs"></i>
+                        </div>
+                        <span class="text-[10px] text-stone-500 leading-tight">Town planning, 3D zoning, deed approvals & GIS layers.</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- In-Modal Quick Login Form -->
+            <div class="pt-3 border-t border-stone-200 mb-4">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-2">
+                    Authenticate Custom Credentials:
+                </div>
+                <form id="modal-login-form" onsubmit="handleModalAuth(event)" class="space-y-2.5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <input 
+                            type="text" 
+                            id="modal-username-input" 
+                            placeholder="ULPIN / Officer ID" 
+                            value="28GNT8392104812" 
+                            class="px-3 py-2 bg-stone-50 border border-stone-300 rounded-lg text-xs font-medium focus:outline-none focus:border-amber-600 focus:bg-white text-stone-800"
+                        >
+                        <input 
+                            type="password" 
+                            id="modal-password-input" 
+                            placeholder="Password" 
+                            value="••••••••" 
+                            class="px-3 py-2 bg-stone-50 border border-stone-300 rounded-lg text-xs font-medium focus:outline-none focus:border-amber-600 focus:bg-white text-stone-800"
+                        >
+                    </div>
+                    <button 
+                        type="submit" 
+                        id="modal-auth-btn"
+                        class="w-full py-2 px-3 bg-gradient-to-r from-amber-700 to-orange-600 hover:from-amber-800 hover:to-orange-700 text-white font-bold text-xs rounded-lg transition shadow flex items-center justify-center gap-1.5"
+                    >
+                        <i class="fa-solid fa-key text-[11px]"></i>
+                        <span>Authenticate Credentials</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Footer Action Links -->
+            <div class="flex flex-col sm:flex-row items-center justify-between pt-3 border-t border-stone-200 gap-2">
+                <a 
+                    href="login.html" 
+                    class="text-xs text-[#78350f] hover:text-amber-900 font-bold flex items-center gap-1.5 hover:underline"
+                >
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    <span>Open Standalone Portal (login.html)</span>
+                </a>
+
+                <div class="flex items-center space-x-2">
+                    <button 
+                        type="button" 
+                        onclick="handleAppLogout()" 
+                        class="px-3 py-1.5 bg-stone-200 hover:bg-stone-300 text-stone-700 text-xs font-semibold rounded-lg transition"
+                    >
+                        Sign Out
+                    </button>
+                    <button 
+                        type="button" 
+                        onclick="closeModal('auth-modal')" 
+                        class="px-4 py-1.5 bg-[#78350f] hover:bg-[#5c280b] text-white text-xs font-bold rounded-lg transition shadow-sm"
+                    >
                         Done
                     </button>
                 </div>

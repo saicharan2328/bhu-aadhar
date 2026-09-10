@@ -36,10 +36,12 @@ from guntur_geojson_importer import import_bundled_guntur_layers
 import_bundled_guntur_layers()
 
 @app.route("/", methods=["GET"])
+@app.route("/index.html", methods=["GET"])
 def serve_index():
     return send_from_directory(frontend_dir, "index.html")
 
 @app.route("/login", methods=["GET"])
+@app.route("/login.html", methods=["GET"])
 def serve_login():
     return send_from_directory(frontend_dir, "login.html")
 
