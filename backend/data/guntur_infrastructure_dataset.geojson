@@ -1,0 +1,306 @@
+{
+  "type": "FeatureCollection",
+  "name": "Guntur_AP_Complete_Infrastructure_Cadastre",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "metadata": {
+    "region": "Guntur, Andhra Pradesh (State Code 28, District GNT)",
+    "datum": "WGS-84 / UTM Zone 44N (EPSG:4326 / EPSG:4979)",
+    "center": {"lat": 16.3067, "lon": 80.4365},
+    "layers_included": [
+      "Layer 1: Dense Building Stock & Strata Units",
+      "Layer 2: Arterial Road Network & Circular Infrastructure Nodes",
+      "Layer 3: 10x7 Cadastral Survey Grid & Parcel Partition Cuts"
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CORR-NS-01",
+      "properties": {
+        "category": "ROAD_CORRIDOR",
+        "survey_number": "ROAD-GNT-NS-01",
+        "base_ulpin": "28GNT7001002001",
+        "name": "Amaravati-Guntur North-South Highway Arterial Corridor",
+        "managing_dept": "Andhra Pradesh Roads & Buildings (R&B) Department",
+        "row_width_m": 36.0,
+        "classification": "6-Lane Dual Carriageway Arterial",
+        "pavement": "Dense Bituminous Macadam (DBM) with Grade-Separated Interchanges",
+        "utilities": "Integrated Stormwater Trunk Conduit & High-Voltage Transmission Verge",
+        "zone_type": "ROAD"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [80.4350, 16.3150],
+          [80.4353, 16.3105],
+          [80.4347, 16.3045],
+          [80.4343, 16.2980]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CORR-EW-02",
+      "properties": {
+        "category": "ROAD_CORRIDOR",
+        "survey_number": "ROAD-GNT-EW-02",
+        "base_ulpin": "28GNT7001002002",
+        "name": "Brodipet-Lakshmipuram East-West Cross Arterial Corridor",
+        "managing_dept": "Guntur Municipal Corporation (GMC) - Urban Roads Wing",
+        "row_width_m": 30.0,
+        "classification": "4-Lane Major Urban Commercial Corridor",
+        "pavement": "Rigid Cement Concrete Pavement with Pedestrian Walkways",
+        "utilities": "400mm Potable Water Supply Pipeline & Underground Optical Fiber Duct",
+        "zone_type": "ROAD"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [80.4270, 16.3055],
+          [80.4335, 16.3058],
+          [80.4385, 16.3052],
+          [80.4460, 16.3060]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CORR-DIAG-03",
+      "properties": {
+        "category": "ROAD_CORRIDOR",
+        "survey_number": "ROAD-GNT-DIAG-03",
+        "base_ulpin": "28GNT7001002003",
+        "name": "Guntur Outer Ring Expressway & Elevated Flyover Corridor",
+        "managing_dept": "National Highways Authority of India (NHAI) / AP CRDA",
+        "row_width_m": 45.0,
+        "classification": "8-Lane Access Controlled Expressway + Elevated Viaduct",
+        "pavement": "High-Speed Stone Matrix Asphalt (SMA)",
+        "utilities": "Central Median High-Pressure Gas Line & Transmission Easement",
+        "zone_type": "AIR"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [80.4345, 16.3010],
+          [80.4390, 16.3050],
+          [80.4440, 16.3090]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-01",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-01",
+        "name": "Guntur Central Multi-Modal Transit & Metro Terminal",
+        "facility_type": "Transport Terminal Hub",
+        "survey_number": "SY-NODE-101",
+        "base_ulpin": "28GNT9001010001",
+        "managing_authority": "Urban Rapid Transit Authority / Indian Railways",
+        "operational_status": "ACTIVE • CAPACITY 85,000 PASSENGERS/DAY",
+        "elevation_bounds": "Z: 0.0m to 18.5m MSL",
+        "telemetry": "Signal Interlocking Tier-3 • 4 Platform Tracks",
+        "color": "#38bdf8"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4352, 16.3102]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-02",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-02",
+        "name": "APCPDCL 132/33kV Main Electrical Grid Substation",
+        "facility_type": "Power Infrastructure",
+        "survey_number": "SY-NODE-102",
+        "base_ulpin": "28GNT9001010002",
+        "managing_authority": "Andhra Pradesh Central Power Distribution Corp (APCPDCL)",
+        "operational_status": "ENERGIZED • 150 MVA TRANSFORMER CAPACITY",
+        "elevation_bounds": "Z: 0.0m to 12.0m MSL",
+        "telemetry": "SCADA Integrated • 33kV Radial Feeders: 14 Active",
+        "color": "#facc15"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4360, 16.3110]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-03",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-03",
+        "name": "GMC 5.0 MLD Bulk Water Treatment Sump & Pumping Station",
+        "facility_type": "Water & Sanitation",
+        "survey_number": "SY-NODE-103",
+        "base_ulpin": "28GNT9001010003",
+        "managing_authority": "GMC Public Health & Water Works Engineering",
+        "operational_status": "ACTIVE • 5.0 MLD CONTINUOUS SUPPLY",
+        "elevation_bounds": "Z: -6.0m to 8.0m MSL (Subsurface Reservoir)",
+        "telemetry": "Turbidity: 0.8 NTU • Chlorination Residual: 1.5 ppm",
+        "color": "#06b6d4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4348, 16.3052]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-04",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-04",
+        "name": "APSWAN Optical Fiber Regional PoP & 5G Telecom Tower",
+        "facility_type": "Telecommunications Hub",
+        "survey_number": "SY-NODE-104",
+        "base_ulpin": "28GNT9001010004",
+        "managing_authority": "AP State FiberNet Limited (APSFL) / DoT",
+        "operational_status": "OPERATIONAL • 100 Gbps CORE BACKBONE",
+        "elevation_bounds": "Z: 0.0m to 48.0m MSL (Antenna Lattice)",
+        "telemetry": "Fiber Latency: 4.2ms • 12 Operator Ducts Active",
+        "color": "#a855f7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4370, 16.3075]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-05",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-05",
+        "name": "AG&P City Gas District Regulating Station (DRS-04)",
+        "facility_type": "Natural Gas Distribution",
+        "survey_number": "SY-NODE-105",
+        "base_ulpin": "28GNT9001010005",
+        "managing_authority": "AG&P Pratham City Gas Distribution",
+        "operational_status": "REGULATED • 19 BAR INLET ➔ 4 BAR NETWORK",
+        "elevation_bounds": "Z: -4.0m to 4.0m MSL",
+        "telemetry": "Pressure: 3.98 Bar • Methane Gas Sniffer: NOMINAL",
+        "color": "#f97316"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4338, 16.3038]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-06",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-06",
+        "name": "Guntur Government General Hospital Emergency Helipad",
+        "facility_type": "Air Rights Medical Facility",
+        "survey_number": "SY-NODE-106",
+        "base_ulpin": "28GNT9001010006",
+        "managing_authority": "AP Directorate of Medical Education / DGCA",
+        "operational_status": "CERTIFIED • 24x7 EMERGENCY AIR AMBULANCE",
+        "elevation_bounds": "Z: 38.0m to 45.0m MSL (Rooftop Air Rights)",
+        "telemetry": "ICAO Annex 14 Class H1 • Load Capacity: 5.4 Tonnes",
+        "color": "#ec4899"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4385, 16.3082]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-07",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-07",
+        "name": "GMC Integrated Command & Control Center (ICCC)",
+        "facility_type": "Smart City Governance",
+        "survey_number": "SY-NODE-107",
+        "base_ulpin": "28GNT9001010007",
+        "managing_authority": "GMC & Guntur Smart City Corporation Limited",
+        "operational_status": "LIVE 24x7 SURVEILLANCE & TRAFFIC MONITORING",
+        "elevation_bounds": "Z: 0.0m to 24.0m MSL",
+        "telemetry": "Connected CCTV Feeds: 842 • AI Traffic Signals: 48",
+        "color": "#10b981"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4372, 16.3048]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-08",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-08",
+        "name": "AP State Secured High-Frequency Communications Bunker",
+        "facility_type": "Restricted Subsurface Defense Grid",
+        "survey_number": "SUB-SEC-01",
+        "base_ulpin": "28GNT9901827461",
+        "managing_authority": "Ministry of Communications & AP Cyber Security Wing",
+        "operational_status": "RESTRICTED CLASSIFIED FACILITY",
+        "elevation_bounds": "Z: -8.0m to -4.0m MSL (Underground Reinforced)",
+        "telemetry": "TEMPEST Shielding Active • Tier-4 Redundant",
+        "color": "#8b5cf6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4398, 16.3098]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-09",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-09",
+        "name": "Lakshmipuram 33/11kV Distribution Electrical Substation",
+        "facility_type": "Power Distribution",
+        "survey_number": "SY-NODE-109",
+        "base_ulpin": "28GNT9001010009",
+        "managing_authority": "APCPDCL Town Sub-Division",
+        "operational_status": "ENERGIZED • 25 MVA FEEDER",
+        "elevation_bounds": "Z: 0.0m to 8.0m MSL",
+        "telemetry": "Feeder Load: 68% • Power Factor: 0.98",
+        "color": "#facc15"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4285, 16.3115]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "NODE-10",
+      "properties": {
+        "category": "INFRASTRUCTURE_NODE",
+        "node_code": "GNT-NODE-10",
+        "name": "Guntur Fire & Disaster Response Headquarters",
+        "facility_type": "Emergency Services",
+        "survey_number": "SY-NODE-110",
+        "base_ulpin": "28GNT9001010010",
+        "managing_authority": "Andhra Pradesh State Disaster Response & Fire Services",
+        "operational_status": "24x7 EMERGENCY DISPATCH READY",
+        "elevation_bounds": "Z: 0.0m to 14.0m MSL",
+        "telemetry": "Turnout Time: 120s • Water Tenders: 6 Ready",
+        "color": "#ef4444"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [80.4365, 16.3060]
+      }
+    }
+  ]
+}

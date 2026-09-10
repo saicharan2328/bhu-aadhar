@@ -23,7 +23,19 @@ GUNTUR_CENTER_LAT = 16.3067
 GUNTUR_CENTER_LON = 80.4365
 METERS_PER_DEGREE_LAT = 110_540.0
 METERS_PER_DEGREE_LON = 111_320.0 * math.cos(math.radians(GUNTUR_CENTER_LAT))
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+
+def get_data_dir() -> Path:
+    candidates = [
+        Path(__file__).resolve().parent / "data",
+        Path(__file__).resolve().parent.parent / "data",
+        Path.cwd() / "data",
+        Path.cwd() / "backend" / "data"
+    ]
+    for p in candidates:
+        if p.exists() and (p / "guntur_buildings_synthetic.geojson").exists():
+            return p
+    return candidates[0]
+
 SOURCE_LAYERS = (
     ("buildings", "guntur_buildings_synthetic.geojson"),
     ("roads", "guntur_roads_synthetic.geojson"),
@@ -257,8 +269,9 @@ def _parcel_from_service_or_rail(feature: dict[str, Any], filename: str) -> dict
 def load_bundled_guntur_sources() -> dict[str, dict[str, Any]]:
     """Load the three GeoJSON layers stored with the project."""
     layers: dict[str, dict[str, Any]] = {}
+    data_dir = get_data_dir()
     for layer_name, filename in SOURCE_LAYERS:
-        path = DATA_DIR / filename
+        path = data_dir / filename
         with path.open("r", encoding="utf-8") as source_file:
             data = json.load(source_file)
         if data.get("type") != "FeatureCollection":

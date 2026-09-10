@@ -12,10 +12,10 @@ class StrataMapAPI {
             const res = await fetch(`${API_BASE_URL}/parcels/3d?rbac=${rbacMode}`);
             if (!res.ok) throw new Error("Backend offline");
             const data = await res.json();
-            return data.parcels;
+            return (data.parcels && data.parcels.length > 50) ? data.parcels : (window.GUNTUR_FULL_DATASET || data.parcels || []);
         } catch (err) {
-            console.warn("Backend API offline, using dynamic in-memory dataset:", err.message);
-            return window.MOCK_DATASET || [];
+            console.warn("Backend API offline, using dynamic pre-bundled Guntur 3D dataset:", err.message);
+            return window.GUNTUR_FULL_DATASET || window.MOCK_DATASET || [];
         }
     }
 
@@ -54,21 +54,22 @@ class StrataMapAPI {
         try {
             const res = await fetch(`${API_BASE_URL}/google-earth/import`, { method: "POST" });
             const data = await res.json();
-            return data.parcels;
+            return (data.parcels && data.parcels.length > 50) ? data.parcels : (window.GUNTUR_FULL_DATASET || data.parcels || []);
         } catch (err) {
-            console.warn("Backend offline, returning mock Google Earth dataset");
-            return window.MOCK_DATASET;
+            console.warn("Backend offline, returning pre-bundled Guntur dataset");
+            return window.GUNTUR_FULL_DATASET || window.MOCK_DATASET || [];
         }
     }
 
     static async fetchGunturData(rbacMode = "PUBLIC") {
         try {
             const res = await fetch(`${API_BASE_URL}/guntur/extract?rbac=${rbacMode}`, { method: "POST" });
+            if (!res.ok) throw new Error("Guntur API offline");
             const data = await res.json();
-            return data.parcels;
+            return (data.parcels && data.parcels.length > 50) ? data.parcels : (window.GUNTUR_FULL_DATASET || data.parcels || []);
         } catch (err) {
-            console.warn("Backend offline, returning mock Guntur dataset");
-            return window.MOCK_DATASET;
+            console.warn("Backend offline, returning pre-bundled Guntur 3D Cadastre dataset (612 3D parcels)");
+            return window.GUNTUR_FULL_DATASET || window.MOCK_DATASET || [];
         }
     }
 

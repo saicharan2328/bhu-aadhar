@@ -1,0 +1,810 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "highway": "primary",
+        "source": "synthetic_osm_like",
+        "width_m": 12,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.279903978074945
+          ],
+          [
+            80.47,
+            16.279903978074945
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.28595007544458
+          ],
+          [
+            80.47,
+            16.28595007544458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "highway": "secondary",
+        "source": "synthetic_osm_like",
+        "width_m": 8,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.29217880232059
+          ],
+          [
+            80.47,
+            16.29217880232059
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "highway": "primary",
+        "source": "synthetic_osm_like",
+        "width_m": 12,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.2984984313185
+          ],
+          [
+            80.47,
+            16.2984984313185
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "highway": "secondary",
+        "source": "synthetic_osm_like",
+        "width_m": 8,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.30525987743651
+          ],
+          [
+            80.47,
+            16.30525987743651
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.311001151008377
+          ],
+          [
+            80.47,
+            16.311001151008377
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "highway": "primary",
+        "source": "synthetic_osm_like",
+        "width_m": 12,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.317383067582032
+          ],
+          [
+            80.47,
+            16.317383067582032
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.323934308638425
+          ],
+          [
+            80.47,
+            16.323934308638425
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "highway": "secondary",
+        "source": "synthetic_osm_like",
+        "width_m": 8,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.330038629130197
+          ],
+          [
+            80.47,
+            16.330038629130197
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "highway": "primary",
+        "source": "synthetic_osm_like",
+        "width_m": 12,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.40043837685603,
+            16.28
+          ],
+          [
+            80.40043837685603,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.40698927495778,
+            16.28
+          ],
+          [
+            80.40698927495778,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12,
+        "highway": "secondary",
+        "source": "synthetic_osm_like",
+        "width_m": 8,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.41392163929136,
+            16.28
+          ],
+          [
+            80.41392163929136,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "highway": "primary",
+        "source": "synthetic_osm_like",
+        "width_m": 12,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.42111321606181,
+            16.28
+          ],
+          [
+            80.42111321606181,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "highway": "secondary",
+        "source": "synthetic_osm_like",
+        "width_m": 8,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.427716692312,
+            16.28
+          ],
+          [
+            80.427716692312,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.43540199931553,
+            16.28
+          ],
+          [
+            80.43540199931553,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16,
+        "highway": "primary",
+        "source": "synthetic_osm_like",
+        "width_m": 12,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.44187397978324,
+            16.28
+          ],
+          [
+            80.44187397978324,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.44888811185108,
+            16.28
+          ],
+          [
+            80.44888811185108,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "highway": "secondary",
+        "source": "synthetic_osm_like",
+        "width_m": 8,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.45618236881653,
+            16.28
+          ],
+          [
+            80.45618236881653,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19,
+        "highway": "primary",
+        "source": "synthetic_osm_like",
+        "width_m": 12,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4626522765343,
+            16.28
+          ],
+          [
+            80.4626522765343,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 20,
+        "highway": "secondary",
+        "source": "synthetic_osm_like",
+        "width_m": 8,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.47016056789592,
+            16.28
+          ],
+          [
+            80.47016056789592,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 21,
+        "highway": "tertiary",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.42371647138751,
+            16.32249835966785
+          ],
+          [
+            80.42400363305644,
+            16.326966950338427
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 22,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 6,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.40298560283227,
+            16.29581893727281
+          ],
+          [
+            80.40223766275417,
+            16.296398456619734
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 23,
+        "highway": "tertiary",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.43630584853156,
+            16.284040821441295
+          ],
+          [
+            80.43593285309363,
+            16.281021620401436
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 24,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 6,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.46666978042165,
+            16.286456986150082
+          ],
+          [
+            80.46914486350396,
+            16.28860843056738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 25,
+        "highway": "tertiary",
+        "source": "synthetic_osm_like",
+        "width_m": 4,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.41243378077503,
+            16.326242348470867
+          ],
+          [
+            80.40919401009712,
+            16.326274302942657
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 26,
+        "highway": "unclassified",
+        "source": "synthetic_osm_like",
+        "width_m": 4,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.447870529796,
+            16.288559361276675
+          ],
+          [
+            80.45223735452913,
+            16.287749592322843
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 27,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 4,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.44321736149786,
+            16.287145577784557
+          ],
+          [
+            80.43957552265846,
+            16.285956192901637
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28,
+        "highway": "unclassified",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.46816814328639,
+            16.324998507494932
+          ],
+          [
+            80.46759787102381,
+            16.32640284420159
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29,
+        "highway": "tertiary",
+        "source": "synthetic_osm_like",
+        "width_m": 4,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.40884456280446,
+            16.321256690682393
+          ],
+          [
+            80.40860599654906,
+            16.325670215153245
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 4,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.45028545060737,
+            16.316927704089853
+          ],
+          [
+            80.44678985087616,
+            16.319717124407504
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31,
+        "highway": "tertiary",
+        "source": "synthetic_osm_like",
+        "width_m": 4,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.41005636871397,
+            16.284824162318824
+          ],
+          [
+            80.40683282378924,
+            16.281565513058357
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 4,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.42233745257512,
+            16.324021534383654
+          ],
+          [
+            80.41967651316823,
+            16.324012869715897
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33,
+        "highway": "tertiary",
+        "source": "synthetic_osm_like",
+        "width_m": 6,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.42531918147964,
+            16.322893304982166
+          ],
+          [
+            80.42533150990228,
+            16.324676551534544
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 34,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 5,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.42362044643717,
+            16.32162767754781
+          ],
+          [
+            80.42198798621719,
+            16.32039742027502
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35,
+        "highway": "residential",
+        "source": "synthetic_osm_like",
+        "width_m": 6,
+        "note": "Replace with real OSM data via Overpass API for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.42596836363826,
+            16.30070326053116
+          ],
+          [
+            80.42976404724853,
+            16.296629903633125
+          ]
+        ]
+      }
+    }
+  ]
+}
