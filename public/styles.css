@@ -1,0 +1,327 @@
+/* 
+ * StrataMap 3D Cadastre - Modern Premium Design System
+ * Problem Statement 26011 - Smart India Hackathon 2026
+ * Enhanced UI with Glassmorphism, Google Fonts, and Pleasant Micro-Interactions
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+    --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Harmonious Color Tokens */
+    --surface-dark: #070b14;
+    --card-dark: rgba(13, 20, 36, 0.78);
+    --card-hover: rgba(22, 33, 58, 0.9);
+    --card-border: rgba(148, 163, 184, 0.12);
+    --card-border-hover: rgba(56, 189, 248, 0.35);
+
+    /* Accents */
+    --accent-emerald: #10b981;
+    --accent-cyan: #06b6d4;
+    --accent-indigo: #6366f1;
+    --accent-amber: #f59e0b;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--surface-dark);
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    touch-action: none;
+    cursor: grab;
+}
+
+#canvas-container:active {
+    cursor: grabbing;
+}
+
+#canvas-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    touch-action: none;
+    outline: none;
+}
+
+.font-mono {
+    font-family: var(--font-mono) !important;
+}
+
+/* Glassmorphic Panel Cards */
+.glass-panel {
+    background: var(--card-dark);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+    border-color: var(--card-border-hover);
+}
+
+.glass-interactive {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-interactive:hover {
+    background: rgba(30, 41, 59, 0.85);
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-1px);
+}
+
+/* High-Legibility Pleasant Badge Pills */
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+/* Pleasant Scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(7, 11, 20, 0.8);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(71, 85, 105, 0.6);
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(56, 189, 248, 0.8);
+}
+
+/* Custom Range Slider Styling */
+input[type=range] {
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(30, 41, 59, 0.9);
+    border-radius: 4px;
+    border: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #6366f1;
+    cursor: pointer;
+    margin-top: -5px;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
+    border: 2px solid #ffffff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.25);
+    box-shadow: 0 0 18px rgba(99, 102, 241, 0.9);
+}
+
+/* Subtle Glow Effects */
+.glow-emerald {
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.25);
+}
+
+.glow-cyan {
+    box-shadow: 0 0 18px rgba(6, 182, 212, 0.25);
+}
+
+.glow-indigo {
+    box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+}
+
+/* Subtle Pulsing Beacon */
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(1.08);
+    }
+}
+
+.pulse-beacon {
+    animation: pulseGlow 2.4s infinite ease-in-out;
+}
+
+/* =========================================================================
+ * BHU AADHAR - WARM GOVERNMENT PORTAL AESTHETICS (MATCHING REFERENCE IMAGE 1)
+ * ========================================================================= */
+.theme-warm-header {
+    background-color: #faf6ee;
+    border-bottom: 1.5px solid #ded3c2;
+    box-shadow: 0 2px 8px rgba(44, 30, 16, 0.06);
+}
+
+.warm-header-btn {
+    background: #fdfbf7;
+    border: 1px solid #d8caa9;
+    color: #44403c;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.18s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.warm-header-btn:hover {
+    background: #f3ebdc;
+    border-color: #c4b38e;
+    color: #1c1917;
+}
+
+.warm-header-btn-active {
+    background: #eeddc2 !important;
+    border-color: #b08d57 !important;
+    color: #78350f !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.warm-inspector-card {
+    background: rgba(253, 251, 247, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid #ded3c2;
+    box-shadow: 0 12px 35px -5px rgba(28, 25, 23, 0.25);
+}
+
+.warm-hud-card {
+    background: rgba(253, 251, 247, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid #ded3c2;
+    box-shadow: 0 10px 30px -5px rgba(28, 25, 23, 0.28);
+}
+
+.warm-flat-card {
+    background: #ffffff;
+    border: 1px solid #e7ddcb;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+}
+
+.warm-flat-card:hover {
+    border-color: #b08d57;
+    box-shadow: 0 2px 8px rgba(180, 83, 9, 0.12);
+}
+
+.warm-floor-tab {
+    background: #fdfbf7;
+    border: 1px solid #ded3c2;
+    color: #786b59;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+.warm-floor-tab:hover {
+    background: #f5ede0;
+    color: #451a03;
+}
+
+.warm-floor-tab-active {
+    background: #eeddc2 !important;
+    border-color: #b89565 !important;
+    color: #78350f !important;
+    font-weight: 700;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.warm-deed-btn {
+    background: #faeedd;
+    border: 1px solid #dfcca9;
+    color: #78350f;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.warm-deed-btn:hover {
+    background: #eeddc2;
+    border-color: #b89565;
+    color: #451a03;
+    box-shadow: 0 1px 3px rgba(180, 83, 9, 0.15);
+}
+
+.warm-status-box {
+    background: #eef8ee;
+    border: 1px solid #c1e2c3;
+    color: #2e6930;
+}
+
+/* Warm Scrollbars */
+.warm-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.warm-scrollbar::-webkit-scrollbar-track {
+    background: #f3ebdc;
+    border-radius: 4px;
+}
+
+.warm-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbb998;
+    border-radius: 4px;
+}
+
+.warm-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #b08d57;
+}
+
+/* Responsive adjustments for Mobile & Touch screens */
+@media (max-width: 768px) {
+    #inspector-card {
+        top: auto;
+        bottom: 70px;
+        left: 3vw;
+        right: 3vw;
+        width: 94vw;
+        max-height: 55vh;
+        z-index: 25;
+    }
+    #metrics-hud {
+        display: none !important;
+    }
+    #building-callout-toast {
+        width: 92vw;
+        max-width: 380px;
+    }
+}

@@ -35,17 +35,33 @@ seed_demo_database()
 from guntur_geojson_importer import import_bundled_guntur_layers
 import_bundled_guntur_layers()
 
+def find_static_file(filename):
+    # Search in order: public, frontend, root
+    root_dir = os.path.dirname(backend_dir)
+    candidates = [
+        os.path.join(root_dir, "public"),
+        frontend_dir,
+        root_dir
+    ]
+    for candidate_dir in candidates:
+        full_path = os.path.join(candidate_dir, filename)
+        if os.path.exists(full_path):
+            return candidate_dir, filename
+    return frontend_dir, filename
+
 @app.route("/", methods=["GET"])
 @app.route("/login", methods=["GET"])
 @app.route("/login.html", methods=["GET"])
 def serve_login():
-    return send_from_directory(frontend_dir, "login.html")
+    d, f = find_static_file("login.html")
+    return send_from_directory(d, f)
 
 @app.route("/map", methods=["GET"])
 @app.route("/dashboard", methods=["GET"])
 @app.route("/index.html", methods=["GET"])
 def serve_index():
-    return send_from_directory(frontend_dir, "index.html")
+    d, f = find_static_file("index.html")
+    return send_from_directory(d, f)
 
 @app.route("/api/registry/pdf", methods=["GET"])
 @app.route("/download-registry-pdf", methods=["GET"])
@@ -91,7 +107,8 @@ def auth_login():
 
 @app.route("/<path:filename>", methods=["GET"])
 def serve_static_file(filename):
-    return send_from_directory(frontend_dir, filename)
+    d, f = find_static_file(filename)
+    return send_from_directory(d, f)
 
 @app.route("/api/health", methods=["GET"])
 def health_check():
