@@ -1,0 +1,277 @@
+{
+  "type": "FeatureCollection",
+  "name": "Guntur_AP_2D_Cadastral_Parcels",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "142/1A",
+        "base_ulpin": "28GNT8392104812",
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "Brodipet 4th Lane",
+        "land_use": "Commercial High-Rise",
+        "floors": 12,
+        "floor_height_m": 3.2,
+        "base_elevation_m": 3.0,
+        "owner": "Brodipet Commercial Association",
+        "permit_no": "APCRDA/BP/GNT/2023/1104",
+        "fire_noc": "AP-FS-2024-8812",
+        "tax_annual": "₹14,20,000",
+        "occupancy_cert": "OC-GNT-2023-8812"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.43639, 16.30659],
+            [80.43661, 16.30659],
+            [80.43661, 16.30681],
+            [80.43639, 16.30681],
+            [80.43639, 16.30659]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "218/3B",
+        "base_ulpin": "28GNT9204817293",
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "Lakshmipuram Main Road",
+        "land_use": "Residential Multi-Storey",
+        "floors": 10,
+        "floor_height_m": 3.2,
+        "base_elevation_m": 3.0,
+        "owner": "Lakshmipuram Housing Co-op Society",
+        "permit_no": "APCRDA/BP/GNT/2022/9941",
+        "fire_noc": "AP-FS-2023-7712",
+        "tax_annual": "₹8,45,000",
+        "occupancy_cert": "OC-GNT-2022-7712"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.42789, 16.31189],
+            [80.42811, 16.31189],
+            [80.42811, 16.31211],
+            [80.42789, 16.31211],
+            [80.42789, 16.31189]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "101/A",
+        "base_ulpin": "28GNT1018293841",
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "Collectorate Administrative Enclave",
+        "land_use": "District Administrative Headquarters",
+        "floors": 5,
+        "floor_height_m": 3.6,
+        "base_elevation_m": 3.0,
+        "owner": "Guntur District Collectorate & Revenue Division",
+        "permit_no": "GO-AP-PWD-GNT-2021-001",
+        "fire_noc": "AP-FS-GOVT-COMPLIANT",
+        "occupancy_cert": "OC-STATE-ADMIN-2021"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.43989, 16.30989],
+            [80.44015, 16.30989],
+            [80.44015, 16.31015],
+            [80.43989, 16.31015],
+            [80.43989, 16.30989]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "102/B",
+        "base_ulpin": "28GNT2029384712",
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "GMC Civic Central Complex",
+        "land_use": "Municipal Corporation & Smart City Command Center",
+        "floors": 6,
+        "floor_height_m": 3.4,
+        "base_elevation_m": 3.0,
+        "owner": "GMC Civic Center & Municipal Command Tower",
+        "permit_no": "GMC-ENG-CIVIC-2020-004",
+        "fire_noc": "AP-FS-2023-CIVIC-901",
+        "occupancy_cert": "OC-GMC-SMARTCITY-2021"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.43989, 16.30539],
+            [80.44013, 16.30539],
+            [80.44013, 16.30563],
+            [80.43989, 16.30563],
+            [80.43989, 16.30539]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "ROAD-GNT-142",
+        "base_ulpin": "28GNT7710293812",
+        "zone_type": "ROAD",
+        "is_road": true,
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "Brodipet 4th Lane Major Arterial RoW",
+        "land_use": "4-Lane Urban Major Arterial Road Right-of-Way (24m RoW)",
+        "owner": "Government of Andhra Pradesh (DoLR / GMC Roads Wing)",
+        "managing_dept": "GMC Engineering & Roads Wing",
+        "row_width_m": 24.0,
+        "utilities": "Embedded 1200mm Storm Drainage & 300mm Drinking Water Trunk Line"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [80.4374, 16.3015],
+          [80.4374, 16.3115]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "ROAD-GNT-218",
+        "base_ulpin": "28GNT8821948192",
+        "zone_type": "ROAD",
+        "is_road": true,
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "Lakshmipuram Ring Arterial Road RoW",
+        "land_use": "6-Lane Ring Road Right-of-Way (30m RoW)",
+        "owner": "Government of Andhra Pradesh (AP R&B Department)",
+        "managing_dept": "Andhra Pradesh Roads & Buildings (R&B) Department",
+        "row_width_m": 30.0,
+        "utilities": "Optical Fiber Duct Bank & High-Voltage Underground Cable Verge"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [80.4310, 16.3072],
+          [80.4420, 16.3072]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "CORR-01",
+        "base_ulpin": "28GNTB3315CF3949F",
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "Outer Ring Road (ORR) Viaduct",
+        "land_use": "Elevated Transit Air Rights",
+        "zone_type": "AIR",
+        "z_min_m": 20.0,
+        "z_max_m": 26.0,
+        "owner": "Guntur Municipal Corporation (GMC) Transit",
+        "permit_no": "GO-AP-TRANSIT-2022-108",
+        "length_m": 110.0
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [80.4310, 16.3072],
+          [80.4420, 16.3072]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "SUB-04",
+        "base_ulpin": "28GNTB182C3EE0828",
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "Arundhatipet Subsurface Corridor",
+        "land_use": "Subsurface Gas & Water Utility Tunnel",
+        "zone_type": "SUB",
+        "z_min_m": -14.0,
+        "z_max_m": -8.0,
+        "owner": "AP Gas Distribution & Water Works",
+        "permit_no": "AP-GO-UTILITY-2021-332",
+        "is_restricted": false
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [80.4374, 16.3015],
+          [80.4374, 16.3115]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "survey_number": "SUB-SEC-01",
+        "base_ulpin": "28GNT9901827461",
+        "state_code": "28",
+        "state": "Andhra Pradesh",
+        "district": "Guntur",
+        "mandal": "Guntur Urban",
+        "locality": "APSWAN Tier-4 Secured Defense Optical Vault",
+        "land_use": "Restricted Government Communications Vault",
+        "zone_type": "SUB",
+        "z_min_m": -8.0,
+        "z_max_m": -4.0,
+        "owner": "Ministry of Communications & AP State Data Center",
+        "permit_no": "DEF-SEC-GO-2020-009",
+        "is_restricted": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.43989, 16.30989],
+            [80.44015, 16.30989],
+            [80.44015, 16.31015],
+            [80.43989, 16.31015],
+            [80.43989, 16.30989]
+          ]
+        ]
+      }
+    }
+  ]
+}

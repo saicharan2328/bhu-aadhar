@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhu Aadhar - Login | 3D ULPIN Land Parcel Identification System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: #0b0f19;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.08em;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass-auth-card {
+            background: rgba(247, 243, 234, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(217, 199, 172, 0.85);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+        }
+        .glass-preview-card {
+            background: rgba(250, 247, 240, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(220, 206, 185, 0.9);
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+        }
+        .input-bhu {
+            background: rgba(254, 252, 247, 0.92);
+            border: 1.5px solid #d8caa9;
+            color: #292524;
+            transition: all 0.2s ease;
+        }
+        .input-bhu:focus {
+            outline: none;
+            border-color: #d97706;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+        }
+        /* Realistic waving flag animation */
+        @keyframes subtleWave {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(0.8deg); }
+        }
+        .flag-wave {
+            animation: subtleWave 4s ease-in-out infinite;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+        }
+    </style>
+</head>
+<body class="min-h-screen relative flex items-center justify-center overflow-hidden">
+
+    <!-- Fullscreen Realistic Aerial City Background -->
+    <div class="absolute inset-0 z-0">
+        <img src="assets/login_bg.jpg" alt="Aerial City 3D View" class="w-full h-full object-cover transform scale-105 filter brightness-95 contrast-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-stone-900/40"></div>
+    </div>
+
+    <!-- Top Left Quick Brand Pill -->
+    <header class="absolute top-4 left-6 z-20 flex items-center space-x-3 bg-stone-900/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-stone-700/50 text-white shadow-lg">
+        <!-- Indian Tricolor Mini Badge -->
+        <div class="w-6 h-4 rounded overflow-hidden shadow flex flex-col">
+            <div class="h-1/3 bg-[#FF9933]"></div>
+            <div class="h-1/3 bg-white flex items-center justify-center">
+                <div class="w-1 h-1 rounded-full bg-[#000080]"></div>
+            </div>
+            <div class="h-1/3 bg-[#128807]"></div>
+        </div>
+        <span class="text-xs font-semibold text-stone-200">Bhu Aadhar • DoLR (SIH 2026)</span>
+    </header>
+
+    <!-- Main Authentication Container (Matching Reference Image 2) -->
+    <main class="relative z-10 w-full max-w-[430px] mx-4 my-8">
+        <div class="glass-auth-card rounded-3xl p-8 flex flex-col items-center text-center">
+
+            <!-- Waving Indian Flag Badge (Exact Match to Reference Image 2) -->
+            <div class="flag-wave mb-3">
+                <svg width="74" height="48" viewBox="0 0 74 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded shadow-md">
+                    <!-- Saffron Stripe -->
+                    <path d="M0 0C12 2.5 25 -2 37 0C49 2 62 -1.5 74 0V16C62 14.5 49 18 37 16C25 14 12 18.5 0 16V0Z" fill="#FF9933"/>
+                    <!-- White Stripe -->
+                    <path d="M0 16C12 18.5 25 14 37 16C49 18 62 14.5 74 16V32C62 30.5 49 34 37 32C25 30 12 34.5 0 32V16Z" fill="#FFFFFF"/>
+                    <!-- Green Stripe -->
+                    <path d="M0 32C12 34.5 25 30 37 32C49 34 62 30.5 74 32V48C62 46.5 49 50 37 48C25 46 12 50.5 0 48V32Z" fill="#128807"/>
+                    <!-- Ashoka Chakra (Navy Blue 24-spoke wheel) -->
+                    <circle cx="37" cy="24" r="5.5" stroke="#000080" stroke-width="0.9" fill="none"/>
+                    <circle cx="37" cy="24" r="1.1" fill="#000080"/>
+                    <g stroke="#000080" stroke-width="0.5">
+                        <line x1="37" y1="18.8" x2="37" y2="29.2"/>
+                        <line x1="31.8" y1="24" x2="42.2" y2="24"/>
+                        <line x1="33.3" y1="20.3" x2="40.7" y2="27.7"/>
+                        <line x1="33.3" y1="27.7" x2="40.7" y2="20.3"/>
+                        <line x1="34.8" y1="19.2" x2="39.2" y2="28.8"/>
+                        <line x1="32.2" y1="21.8" x2="41.8" y2="26.2"/>
+                        <line x1="39.2" y1="19.2" x2="34.8" y2="28.8"/>
+                        <line x1="41.8" y1="21.8" x2="32.2" y2="26.2"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="text-2xl sm:text-3xl font-cinzel font-extrabold text-[#78350f] tracking-wider leading-none mb-1.5">
+                BHU AADHAR
+            </h1>
+            <p class="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#92400e] uppercase mb-6">
+                LAND PARCEL IDENTIFICATION SYSTEM • SIH 2026
+            </p>
+
+            <!-- Login Form -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="w-full space-y-3.5 text-left">
+                
+                <!-- ULPIN ID / Username Input -->
+                <div>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-3.5 text-stone-500 text-sm">
+                            <i class="fa-regular fa-user"></i>
+                        </span>
+                        <input 
+                            type="text" 
+                            id="username-input" 
+                            required
+                            placeholder="ULPIN ID / Username / Email" 
+                            value="28GNT8392104812"
+                            class="input-bhu w-full rounded-xl py-3 pl-10 pr-3 text-xs sm:text-sm font-medium placeholder-stone-400"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-3.5 text-stone-500 text-sm">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input 
+                            type="password" 
+                            id="password-input" 
+                            required
+                            placeholder="Password" 
+                            value="••••••••"
+                            class="input-bhu w-full rounded-xl py-3 pl-10 pr-10 text-xs sm:text-sm font-medium placeholder-stone-400"
+                        >
+                        <button type="button" onclick="togglePassword()" class="absolute right-3 text-stone-400 hover:text-stone-600 transition text-xs">
+                            <i id="eye-icon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="flex justify-end mt-1.5">
+                        <a href="javascript:void(0)" onclick="alert('For SIH 2026 Demo: Use any 14-digit ULPIN ID (e.g. 28GNT8392104812) or click Quick Demo buttons below.')" class="text-[11px] text-stone-500 hover:text-amber-800 transition font-medium">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sign In Button (Warm Amber Gradient matching Image 2) -->
+                <button 
+                    type="submit" 
+                    id="submit-btn"
+                    class="w-full py-3.5 px-4 rounded-xl text-white font-bold text-sm bg-gradient-to-r from-amber-700 via-amber-600 to-orange-600 hover:from-amber-800 hover:to-orange-700 active:scale-[0.99] transition shadow-lg shadow-amber-900/25 flex items-center justify-center space-x-2 mt-2"
+                >
+                    <span>Sign In</span>
+                    <i class="fa-solid fa-angles-right text-xs"></i>
+                </button>
+
+                <!-- Register Link -->
+                <div class="text-center pt-2">
+                    <a href="javascript:void(0)" onclick="useDemoLogin('PUBLIC')" class="text-xs text-stone-600 hover:text-amber-900 font-semibold transition">
+                        Register New Account
+                    </a>
+                </div>
+
+                <!-- Quick Role Selector / Judge Fast-Pass -->
+                <div class="pt-3 border-t border-stone-300/80">
+                    <span class="block text-center text-[10px] uppercase font-bold tracking-wider text-stone-500 mb-2">
+                        Quick Demo Access (SIH 2026):
+                    </span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button 
+                            type="button" 
+                            onclick="useDemoLogin('PUBLIC')"
+                            class="py-1.5 px-2 bg-amber-50 hover:bg-amber-100/80 border border-amber-300/70 rounded-lg text-[11px] font-semibold text-amber-900 text-center transition flex items-center justify-center gap-1.5"
+                        >
+                            <i class="fa-solid fa-eye text-emerald-600 text-xs"></i>
+                            <span>Citizen View</span>
+                        </button>
+                        <button 
+                            type="button" 
+                            onclick="useDemoLogin('OFFICIAL')"
+                            class="py-1.5 px-2 bg-purple-50 hover:bg-purple-100/80 border border-purple-300/70 rounded-lg text-[11px] font-semibold text-purple-900 text-center transition flex items-center justify-center gap-1.5"
+                        >
+                            <i class="fa-solid fa-shield-halved text-purple-600 text-xs"></i>
+                            <span>Govt Official</span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Bottom Left Floating Telemetry Preview Card (Exact Match to Image 2) -->
+    <aside class="absolute bottom-5 left-6 z-20 hidden md:block max-w-[340px]">
+        <div class="glass-preview-card rounded-2xl p-3.5 shadow-xl text-stone-900">
+            <div class="flex items-center space-x-1.5 mb-2.5">
+                <span class="text-amber-700 text-xs">◆</span>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-stone-800">
+                    DASHBOARD PREVIEW
+                </h3>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <!-- Unit Card Box -->
+                <div class="bg-amber-50/70 border border-amber-200/80 rounded-lg p-2 flex flex-col justify-between">
+                    <div class="flex items-center justify-between text-stone-700">
+                        <span class="font-bold text-stone-900">Flat 601</span>
+                        <span>Flr 1</span>
+                        <span>1227 sq.ft</span>
+                    </div>
+                    <div class="text-[10px] text-stone-500 mt-1">
+                        UDS: <strong class="text-stone-800">41.3 sq.yd</strong>
+                    </div>
+                    <div class="mt-1.5 pt-1 border-t border-amber-200/60 font-medium text-stone-800 truncate flex items-center gap-1">
+                        <i class="fa-solid fa-user text-[9px] text-amber-700"></i>
+                        <span>T. Ramesh Babu</span>
+                    </div>
+                </div>
+
+                <!-- Coverage Metrics Box -->
+                <div class="bg-white/70 border border-stone-200 rounded-lg p-2 flex flex-col justify-center">
+                    <span class="text-[10px] uppercase text-stone-500 font-semibold">Area Registered</span>
+                    <span class="font-bold font-mono text-emerald-800 text-sm mt-0.5">3,824,648 m³</span>
+                    <span class="text-[10px] text-stone-600 mt-0.5">714 Pieces • 70 Wards</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Bottom Right System Badge -->
+    <div class="absolute bottom-4 right-6 z-20 hidden sm:flex items-center space-x-2 text-[11px] text-stone-300 bg-stone-950/70 backdrop-blur px-3 py-1.5 rounded-full border border-stone-800">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Guntur Urban Mandal • 3D Cadastre v1.0</span>
+    </div>
+
+    <!-- Script Handling Login & Session Navigation -->
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById("password-input");
+            const eye = document.getElementById("eye-icon");
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                eye.classList.remove("fa-eye");
+                eye.classList.add("fa-eye-slash");
+            } else {
+                pwd.type = "password";
+                eye.classList.remove("fa-eye-slash");
+                eye.classList.add("fa-eye");
+            }
+        }
+
+        function useDemoLogin(role) {
+            if (role === "OFFICIAL") {
+                document.getElementById("username-input").value = "APCRDA-GMC-OFFICER-01";
+                document.getElementById("password-input").value = "OfficialPass@2026";
+            } else {
+                document.getElementById("username-input").value = "28GNT8392104812";
+                document.getElementById("password-input").value = "CitizenPass@2026";
+            }
+            document.getElementById("login-form").dispatchEvent(new Event('submit'));
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById("submit-btn");
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Authenticating...`;
+            btn.disabled = true;
+
+            const username = document.getElementById("username-input").value.trim();
+            const password = document.getElementById("password-input").value.trim();
+
+            try {
+                const response = await fetch("/api/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+                if (data.status === "SUCCESS") {
+                    // Store authenticated session
+                    localStorage.setItem("bhu_user_ulpin", data.user.ulpin_id);
+                    localStorage.setItem("bhu_user_role", data.user.role);
+                    localStorage.setItem("bhu_user_name", data.user.display_name);
+
+                    // Redirect to the 3D Cadastre Dashboard
+                    window.location.href = `/?rbac=${data.user.role}`;
+                } else {
+                    alert(data.message || "Authentication failed. Please check credentials.");
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.warn("Backend offline, continuing in local mode:", err);
+                const role = username.toLowerCase().includes("officer") ? "OFFICIAL" : "PUBLIC";
+                localStorage.setItem("bhu_user_ulpin", username);
+                localStorage.setItem("bhu_user_role", role);
+                localStorage.setItem("bhu_user_name", role === "OFFICIAL" ? "Govt Officer" : "Citizen Title Holder");
+                window.location.href = `/?rbac=${role}`;
+            }
+        }
+    </script>
+</body>
+</html>

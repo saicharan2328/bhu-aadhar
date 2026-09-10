@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Guntur Andhra Pradesh 3D Buildings &amp; Spatial Parcels</name>
+    <description>Exported 3D Building Extrusions and Cadastral Bounds for Guntur, AP from Google Earth Pro</description>
+    
+    <!-- 1. Brodipet High-Rise Commercial Complex -->
+    <Placemark>
+      <name>Brodipet 3D Tower - Guntur</name>
+      <description>Commercial High-Rise (12 Floors)</description>
+      <ExtendedData>
+        <Data name="base_ulpin"><value>28GNT8392104812</value></Data>
+        <Data name="floors"><value>12</value></Data>
+        <Data name="owner"><value>Brodipet Commercial Association</value></Data>
+      </ExtendedData>
+      <Polygon>
+        <extrude>1</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              80.4360,16.3060,0.0
+              80.4370,16.3060,0.0
+              80.4370,16.3070,0.0
+              80.4360,16.3070,0.0
+              80.4360,16.3060,0.0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+
+    <!-- 2. Lakshmipuram Residential Apartments -->
+    <Placemark>
+      <name>Lakshmipuram 3D Heights - Guntur</name>
+      <description>Residential Apartment Complex (8 Floors)</description>
+      <ExtendedData>
+        <Data name="base_ulpin"><value>28GNT9204817293</value></Data>
+        <Data name="floors"><value>8</value></Data>
+        <Data name="owner"><value>Lakshmipuram Co-op Society</value></Data>
+      </ExtendedData>
+      <Polygon>
+        <extrude>1</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              80.4275,16.3115,0.0
+              80.4285,16.3115,0.0
+              80.4285,16.3125,0.0
+              80.4275,16.3125,0.0
+              80.4275,16.3115,0.0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+
+    <!-- 3. Guntur Elevated Flyover Air Rights -->
+    <Placemark>
+      <name>Guntur Highway Flyover Corridor</name>
+      <description>Elevated Air Rights Parcel</description>
+      <ExtendedData>
+        <Data name="base_ulpin"><value>28GNT7739102948</value></Data>
+        <Data name="zone_type"><value>AIR</value></Data>
+        <Data name="min_alt"><value>25.0</value></Data>
+        <Data name="max_alt"><value>32.0</value></Data>
+      </ExtendedData>
+      <LineString>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates>
+          80.4400,16.2970,25.0
+          80.4450,16.2990,25.0
+          80.4500,16.3010,25.0
+        </coordinates>
+      </LineString>
+    </Placemark>
+
+    <!-- 4. Guntur Subsurface Metro / Drainage Utility Tunnel -->
+    <Placemark>
+      <name>Guntur Underground Utility Tunnel</name>
+      <description>Subsurface Infrastructure Corridor</description>
+      <ExtendedData>
+        <Data name="base_ulpin"><value>28GNT1102938475</value></Data>
+        <Data name="zone_type"><value>SUB</value></Data>
+        <Data name="min_alt"><value>-15.0</value></Data>
+        <Data name="max_alt"><value>-8.0</value></Data>
+      </ExtendedData>
+      <LineString>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates>
+          80.4340,16.3040,-15.0
+          80.4360,16.3060,-15.0
+          80.4380,16.3080,-15.0
+        </coordinates>
+      </LineString>
+    </Placemark>
+  </Document>
+</kml>

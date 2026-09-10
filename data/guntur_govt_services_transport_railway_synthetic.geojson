@@ -1,0 +1,1437 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "name": "Collector Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43173577040072,
+          16.29417336358006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "name": "Municipal Corporation Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42119010589929,
+          16.299743929974888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "name": "Revenue Divisional Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45013898136018,
+          16.2984457458668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "name": "RDO Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45973519727647,
+          16.321907803251055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "name": "Tahsildar Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42837549385496,
+          16.309889733358407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "name": "Land Records Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.46458938246407,
+          16.296558657251808
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "name": "Registration Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44651754859596,
+          16.32216880771942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "name": "Police Commissionerate",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41121493973888,
+          16.320527298549756
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "name": "City Police Station",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.46101403083465,
+          16.31460141539344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "name": "Traffic Police Station",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44359684269584,
+          16.285049109410284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "name": "Post Office (GPO)",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.440067633957,
+          16.29853028335785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12,
+        "name": "Sub Post Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44496381277034,
+          16.28928634602747
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "name": "Electricity Department Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43506881257547,
+          16.29338755795725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "name": "Water Supply Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45433193940596,
+          16.317576686087623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15,
+        "name": "Town Planning Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.40704631865685,
+          16.308470421970764
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16,
+        "name": "District Court",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43959709593321,
+          16.309385223730747
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "name": "Land Acquisition Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43778451457403,
+          16.288053887053316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "name": "Survey & Land Records Office",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45149505646081,
+          16.295996504684943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19,
+        "name": "ULPIN Facilitation Center",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43789936264618,
+          16.304847124247033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 20,
+        "name": "Bhulekh Service Center",
+        "category": "government_office",
+        "amenity": "government",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM/Government data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43134948101184,
+          16.2917220306429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 21,
+        "name": "Bank 21",
+        "category": "service_sector",
+        "amenity": "bank",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42729591366528,
+          16.31236016350958
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 22,
+        "name": "ATM 22",
+        "category": "service_sector",
+        "amenity": "atm",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.46479673027763,
+          16.290187708417527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 23,
+        "name": "ATM 23",
+        "category": "service_sector",
+        "amenity": "atm",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4373890242724,
+          16.316296004287427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 24,
+        "name": "Hospital 24",
+        "category": "service_sector",
+        "amenity": "hospital",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42222235492164,
+          16.324820328747638
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 25,
+        "name": "Hospital 25",
+        "category": "service_sector",
+        "amenity": "hospital",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.46744218000318,
+          16.327372435900198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 26,
+        "name": "Hospital 26",
+        "category": "service_sector",
+        "amenity": "hospital",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45704261695161,
+          16.287698800932663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 27,
+        "name": "Clinic 27",
+        "category": "service_sector",
+        "amenity": "clinic",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43310351311202,
+          16.28228681152246
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28,
+        "name": "Pharmacy 28",
+        "category": "service_sector",
+        "amenity": "pharmacy",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45653247258593,
+          16.311772246586425
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29,
+        "name": "Pharmacy 29",
+        "category": "service_sector",
+        "amenity": "pharmacy",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.40991722878086,
+          16.289751279504095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30,
+        "name": "School 30",
+        "category": "service_sector",
+        "amenity": "school",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4102375288542,
+          16.304884283257568
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31,
+        "name": "School 31",
+        "category": "service_sector",
+        "amenity": "school",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45590000436303,
+          16.31249642442835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32,
+        "name": "School 32",
+        "category": "service_sector",
+        "amenity": "school",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43136015214509,
+          16.30142591442431
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33,
+        "name": "College 33",
+        "category": "service_sector",
+        "amenity": "college",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44344547854568,
+          16.31319343326586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 34,
+        "name": "College 34",
+        "category": "service_sector",
+        "amenity": "college",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43773916123757,
+          16.29840625643058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35,
+        "name": "College 35",
+        "category": "service_sector",
+        "amenity": "college",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44229121639736,
+          16.30528180876687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 36,
+        "name": "University 36",
+        "category": "service_sector",
+        "amenity": "university",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42667505872929,
+          16.322727237968078
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 37,
+        "name": "Market 37",
+        "category": "service_sector",
+        "amenity": "marketplace",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43566111743465,
+          16.32039689963208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 38,
+        "name": "Market 38",
+        "category": "service_sector",
+        "amenity": "marketplace",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44678007053562,
+          16.301964785940417
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39,
+        "name": "Market 39",
+        "category": "service_sector",
+        "amenity": "marketplace",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4343497383684,
+          16.314368315848807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40,
+        "name": "Shopping Mall 40",
+        "category": "service_sector",
+        "amenity": "mall",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42055296690964,
+          16.28258438257644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 41,
+        "name": "Shopping Mall 41",
+        "category": "service_sector",
+        "amenity": "mall",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44418356543447,
+          16.298477169273475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 42,
+        "name": "Supermarket 42",
+        "category": "service_sector",
+        "amenity": "supermarket",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.40733027910284,
+          16.288347266859816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 43,
+        "name": "Restaurant 43",
+        "category": "service_sector",
+        "amenity": "restaurant",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43014240144443,
+          16.29427123767032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 44,
+        "name": "Restaurant 44",
+        "category": "service_sector",
+        "amenity": "restaurant",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44112278450528,
+          16.32338426382562
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 45,
+        "name": "Hotel 45",
+        "category": "service_sector",
+        "amenity": "hotel",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43246007421318,
+          16.28972489996241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 46,
+        "name": "Hotel 46",
+        "category": "service_sector",
+        "amenity": "hotel",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42438953711412,
+          16.317569213101958
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 47,
+        "name": "Hotel 47",
+        "category": "service_sector",
+        "amenity": "hotel",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44601403188506,
+          16.299781834026604
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 48,
+        "name": "Petrol Pump 48",
+        "category": "service_sector",
+        "amenity": "fuel",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4106108177336,
+          16.291254010306506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 49,
+        "name": "Petrol Pump 49",
+        "category": "service_sector",
+        "amenity": "fuel",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44177752761239,
+          16.321895973286484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 50,
+        "name": "Petrol Pump 50",
+        "category": "service_sector",
+        "amenity": "fuel",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4392314315629,
+          16.30328620012452
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 51,
+        "name": "Post Office 51",
+        "category": "service_sector",
+        "amenity": "post_office",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45405627085869,
+          16.313282623470858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 52,
+        "name": "Post Office 52",
+        "category": "service_sector",
+        "amenity": "post_office",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41514918932523,
+          16.283899320814832
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 53,
+        "name": "Post Office 53",
+        "category": "service_sector",
+        "amenity": "post_office",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.46018570186872,
+          16.29800986813379
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 54,
+        "name": "Library 54",
+        "category": "service_sector",
+        "amenity": "library",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42581931923016,
+          16.304854532646175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 55,
+        "name": "Library 55",
+        "category": "service_sector",
+        "amenity": "library",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.45449283057478,
+          16.294520920717076
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 56,
+        "name": "Community Center 56",
+        "category": "service_sector",
+        "amenity": "community_centre",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41854217495192,
+          16.301106237825508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 57,
+        "name": "Community Center 57",
+        "category": "service_sector",
+        "amenity": "community_centre",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.44426514767339,
+          16.297212620666283
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 58,
+        "name": "Community Center 58",
+        "category": "service_sector",
+        "amenity": "community_centre",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43614274233475,
+          16.313512543440506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 59,
+        "name": "Sports Complex 59",
+        "category": "service_sector",
+        "amenity": "sports_centre",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.40658701165235,
+          16.31027534882641
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 60,
+        "name": "Cinema Hall 60",
+        "category": "service_sector",
+        "amenity": "cinema",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41384089973245,
+          16.32459179832503
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 61,
+        "name": "Park 61",
+        "category": "service_sector",
+        "amenity": "park",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43436009419267,
+          16.32377953683309
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 62,
+        "name": "Park 62",
+        "category": "service_sector",
+        "amenity": "park",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43484353086242,
+          16.29084637892968
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 63,
+        "name": "Park 63",
+        "category": "service_sector",
+        "amenity": "park",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4381146871318,
+          16.32293529942727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 64,
+        "railway": "rail",
+        "category": "railway_track",
+        "line_name": "Railway Line 1",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real railway data from OSM/Indian Railways for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.4,
+            16.299817218016482
+          ],
+          [
+            80.42,
+            16.30181721801648
+          ],
+          [
+            80.44000000000001,
+            16.29881721801648
+          ],
+          [
+            80.47,
+            16.302817218016482
+          ],
+          [
+            80.47,
+            16.299817218016482
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 65,
+        "railway": "rail",
+        "category": "railway_track",
+        "line_name": "Railway Line 2",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real railway data from OSM/Indian Railways for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.42611470897093,
+            16.28
+          ],
+          [
+            80.42311470897093,
+            16.3
+          ],
+          [
+            80.42811470897092,
+            16.32
+          ],
+          [
+            80.42511470897092,
+            16.34
+          ],
+          [
+            80.42611470897093,
+            16.33
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 66,
+        "railway": "rail",
+        "category": "railway_track",
+        "line_name": "Railway Line 3",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real railway data from OSM/Indian Railways for production"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.43,
+            16.290000000000003
+          ],
+          [
+            80.45,
+            16.3
+          ],
+          [
+            80.46000000000001,
+            16.310000000000002
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 67,
+        "name": "Guntur Junction Railway Station",
+        "category": "transportation",
+        "amenity": "railway_station",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.46106704276376,
+          16.320670775366754
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 68,
+        "name": "Bus Station (Main)",
+        "category": "transportation",
+        "amenity": "bus_station",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41894200170954,
+          16.32086729684511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 69,
+        "name": "City Bus Stop 1",
+        "category": "transportation",
+        "amenity": "bus_stop",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42773972355292,
+          16.322549056035168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 70,
+        "name": "City Bus Stop 2",
+        "category": "transportation",
+        "amenity": "bus_stop",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.4168303561383,
+          16.312337948888022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 71,
+        "name": "City Bus Stop 3",
+        "category": "transportation",
+        "amenity": "bus_stop",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42741891747835,
+          16.32144842296801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 72,
+        "name": "Auto Rickshaw Stand",
+        "category": "transportation",
+        "amenity": "taxi",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.43340605515827,
+          16.326627799742536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 73,
+        "name": "Taxi Stand",
+        "category": "transportation",
+        "amenity": "taxi",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41680391366074,
+          16.295813219955907
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 74,
+        "name": "Parking Area 1",
+        "category": "transportation",
+        "amenity": "parking",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41860920173652,
+          16.283958980534546
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 75,
+        "name": "Parking Area 2",
+        "category": "transportation",
+        "amenity": "parking",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.41334653972785,
+          16.306359046362054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 76,
+        "name": "Fuel Station on NH",
+        "category": "transportation",
+        "amenity": "fuel",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42826725963025,
+          16.300789291158864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 77,
+        "name": "Transport Nagar Office",
+        "category": "transportation",
+        "amenity": "government_office",
+        "source": "synthetic_osm_like",
+        "note": "Replace with real OSM data for production"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.42543275022912,
+          16.30252966878621
+        ]
+      }
+    }
+  ]
+}
