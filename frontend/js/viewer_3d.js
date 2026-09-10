@@ -7,9 +7,9 @@ class Viewer3D {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0xd4e2ee); // Soft atmospheric aerial daylight sky
-        this.scene.fog = new THREE.Fog(0xd4e2ee, 900, 3600); // Dissolves the ground into the horizon
-        this.satelliteMode = true; // Default to Realistic Satellite View matching Reference Image 1
+        this.scene.background = new THREE.Color(0x0a0f1d); // Sleek Cartographic Cadastre Sky
+        this.scene.fog = new THREE.Fog(0x0a0f1d, 800, 3200); // Ambient atmospheric horizon depth
+        this.satelliteMode = false; // Pure 3D Cadastral Map mode without satellite overlay
 
         const initialW = (this.container && this.container.clientWidth > 0) ? this.container.clientWidth : window.innerWidth;
         const initialH = (this.container && this.container.clientHeight > 0) ? this.container.clientHeight : Math.max(window.innerHeight - 56, 400);
@@ -53,15 +53,15 @@ class Viewer3D {
         this.controls.panSpeed = 0.95;
         this.controls.zoomSpeed = 1.1;
 
-        // Lighting - Warm Natural Sunlight Matching Satellite Photography
-        const ambientLight = new THREE.AmbientLight(0xfffaee, 0.95);
+        // Lighting - High-Contrast Natural Sunlight for 3D Cadastral Visualization
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
         this.scene.add(ambientLight);
 
-        const dirLight = new THREE.DirectionalLight(0xfff3db, 1.15);
+        const dirLight = new THREE.DirectionalLight(0xfff3db, 1.25);
         dirLight.position.set(160, 240, 120);
         this.scene.add(dirLight);
 
-        const fillLight = new THREE.DirectionalLight(0xcde4f7, 0.45);
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 0.50);
         fillLight.position.set(-140, 160, -110);
         this.scene.add(fillLight);
 
@@ -69,19 +69,16 @@ class Viewer3D {
         // Surface Grid (Z=0)
         this.gridSurface = new THREE.GridHelper(120, 30, 0x10b981, 0x1e293b);
         this.gridSurface.position.y = 0;
-        this.gridSurface.visible = false; // Hidden in satellite mode by default
+        this.gridSurface.visible = true;
         this.scene.add(this.gridSurface);
 
         // Subsurface Depth Grid (Z=-20m)
         this.gridSubsurface = new THREE.GridHelper(120, 30, 0xef4444, 0x0f172a);
         this.gridSubsurface.position.y = -20;
-        this.gridSubsurface.visible = false;
+        this.gridSubsurface.visible = true;
         this.scene.add(this.gridSubsurface);
 
-        // 1. Realistic Satellite Aerial Orthophoto Ground Overlay (Active by default)
-        this.initSatelliteGroundOverlay();
-
-        // 2. 2D Guntur Cadastral Base Map Ground Overlay (Vector Cartographic Mode)
+        // 2D Guntur Cadastral Base Map Ground Overlay (Vector Cartographic Mode)
         this.initCadastralGroundOverlay();
 
         // Storage for parcel meshes & Material Caches
@@ -93,7 +90,7 @@ class Viewer3D {
         this.edgeMaterialCache = new Map();
         this.activeDetailGroup = null;
 
-        // Raycaster for mouse selection
+        // Raycaster for mouse and touch selection
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
 
@@ -101,66 +98,19 @@ class Viewer3D {
         this.animate();
     }
 
-    initSatelliteGroundOverlay() {
-        const textureLoader = new THREE.TextureLoader();
-        textureLoader.load(
-            "assets/guntur_satellite.jpg",
-            (texture) => {
-                texture.wrapS = THREE.ClampToEdgeWrapping;
-                texture.wrapT = THREE.ClampToEdgeWrapping;
-                texture.repeat.set(1, 1);
-                if (THREE.sRGBEncoding) {
-                    texture.encoding = THREE.sRGBEncoding;
-                }
-                texture.anisotropy = Math.min(this.renderer.capabilities.getMaxAnisotropy(), 16);
-
-                const planeGeo = new THREE.PlaneGeometry(4500, 4500);
-                const planeMat = new THREE.MeshStandardMaterial({
-                    map: texture,
-                    roughness: 0.92,
-                    metalness: 0.04,
-                    depthWrite: true
-                });
-
-                this.satellitePlane = new THREE.Mesh(planeGeo, planeMat);
-                this.satellitePlane.rotation.x = -Math.PI / 2;
-                this.satellitePlane.position.y = -0.15;
-                this.scene.add(this.satellitePlane);
-
-                if (this.satelliteMode) {
-                    this.satellitePlane.visible = true;
-                    if (this.cadastralPlane) this.cadastralPlane.visible = false;
-                }
-            },
-            undefined,
-            (err) => {
-                console.warn("Could not load satellite ground texture:", err);
-            }
-        );
-    }
-
     toggleSatelliteMode(enableSatellite) {
-        this.satelliteMode = (enableSatellite === undefined) ? !this.satelliteMode : Boolean(enableSatellite);
-        if (this.satellitePlane) {
-            this.satellitePlane.visible = this.satelliteMode;
-        }
+        // Satellite mode removed as requested
+        this.satelliteMode = false;
         if (this.cadastralPlane) {
-            this.cadastralPlane.visible = !this.satelliteMode;
+            this.cadastralPlane.visible = true;
         }
         if (this.gridSurface) {
-            this.gridSurface.visible = !this.satelliteMode;
+            this.gridSurface.visible = true;
         }
         if (this.gridSubsurface) {
-            this.gridSubsurface.visible = !this.satelliteMode;
+            this.gridSubsurface.visible = true;
         }
-        const skyColor = this.satelliteMode ? 0xd4e2ee : 0x090f1d;
-        this.scene.background = new THREE.Color(skyColor);
-        if (this.scene.fog) {
-            this.scene.fog.color = new THREE.Color(skyColor);
-            this.scene.fog.near = this.satelliteMode ? 900 : 700;
-            this.scene.fog.far = this.satelliteMode ? 3600 : 2800;
-        }
-        return this.satelliteMode;
+        return false;
     }
 
     initCadastralGroundOverlay() {
@@ -546,6 +496,20 @@ class Viewer3D {
         const domEl = this.renderer.domElement;
         this.pointerDownPos = null;
         this.pointerDownTime = 0;
+        this.lastSelectedTime = 0;
+
+        const getCoords = (e) => {
+            if (e.clientX !== undefined && e.clientX !== null && e.clientX !== 0) {
+                return { x: e.clientX, y: e.clientY };
+            }
+            if (e.changedTouches && e.changedTouches.length > 0) {
+                return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+            }
+            if (e.touches && e.touches.length > 0) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            return { x: e.clientX || 0, y: e.clientY || 0 };
+        };
 
         // Cancel camera animation if user manually moves map
         this.controls.addEventListener("start", () => {
@@ -557,30 +521,56 @@ class Viewer3D {
             domEl.style.cursor = "grab";
         });
 
-        domEl.addEventListener("pointerdown", (e) => {
+        // Pointerdown / Touchstart
+        const onDown = (e) => {
             this.cameraAnim = null;
-            this.pointerDownPos = { x: e.clientX, y: e.clientY };
+            const c = getCoords(e);
+            this.pointerDownPos = c;
             this.pointerDownTime = performance.now();
-        });
+        };
 
-        domEl.addEventListener("pointerup", (e) => {
+        domEl.addEventListener("pointerdown", onDown);
+        domEl.addEventListener("touchstart", onDown, { passive: true });
+
+        // Pointerup / Touchend (Primary touch/click gesture detection)
+        const onUp = (e) => {
             if (!this.pointerDownPos) return;
-            const dx = e.clientX - this.pointerDownPos.x;
-            const dy = e.clientY - this.pointerDownPos.y;
+            const c = getCoords(e);
+            const dx = c.x - this.pointerDownPos.x;
+            const dy = c.y - this.pointerDownPos.y;
             const dist = Math.hypot(dx, dy);
             const elapsed = performance.now() - this.pointerDownTime;
             this.pointerDownPos = null;
 
-            // Only trigger parcel inspection on clean left click (not drag or right-click)
-            if (e.button === 0 && dist < 8 && elapsed < 500) {
-                this.handleCanvasClick(e);
+            const isTouch = (e.pointerType === "touch") || (e.type && e.type.startsWith("touch")) || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+            const maxDist = isTouch ? 24 : 9;
+            const maxTime = isTouch ? 650 : 450;
+            const isLeftOrTouch = (e.button === 0 || e.button === -1 || e.button === undefined || isTouch);
+
+            if (isLeftOrTouch && dist <= maxDist && elapsed <= maxTime) {
+                this.handleCanvasClickAt(c.x, c.y);
+            }
+        };
+
+        domEl.addEventListener("pointerup", onUp);
+        domEl.addEventListener("touchend", onUp, { passive: true });
+
+        // Standard native click fallback (with debounce against pointerup)
+        domEl.addEventListener("click", (e) => {
+            if (e.button === 0) {
+                const now = performance.now();
+                if (now - this.lastSelectedTime > 250) {
+                    this.handleCanvasClickAt(e.clientX, e.clientY);
+                }
             }
         });
 
-        // Hover cursor feedback
+        // Hover cursor feedback (for mouse pointers)
         domEl.addEventListener("pointermove", (e) => {
             if (this.pointerDownPos) return; // currently dragging/orbiting
-            this.handlePointerHover(e);
+            if (e.pointerType === "mouse" || !e.pointerType) {
+                this.handlePointerHover(e);
+            }
         });
 
         // Wheel interrupt
@@ -607,6 +597,40 @@ class Viewer3D {
             }
         }
         this.renderer.domElement.style.cursor = "grab";
+    }
+
+    handleCanvasClick(event) {
+        if (!event) return;
+        const clientX = event.clientX !== undefined ? event.clientX : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientX : (event.touches && event.touches[0] ? event.touches[0].clientX : 0));
+        const clientY = event.clientY !== undefined ? event.clientY : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientY : (event.touches && event.touches[0] ? event.touches[0].clientY : 0));
+        this.handleCanvasClickAt(clientX, clientY);
+    }
+
+    handleCanvasClickAt(clientX, clientY) {
+        if (clientX === undefined || clientY === undefined) return;
+        const rect = this.renderer.domElement.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        this.mouse.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+        this.mouse.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+        const visibleMeshes = this.parcelMeshes.filter(p => p.mesh && p.mesh.visible).map(p => p.mesh);
+        const intersects = this.raycaster.intersectObjects(visibleMeshes, true);
+
+        if (intersects.length > 0) {
+            for (let i = 0; i < intersects.length; i++) {
+                const match = this.getParcelFromIntersect(intersects[i].object);
+                if (match) {
+                    this.lastSelectedTime = performance.now();
+                    this.highlightParcel(match.mesh);
+                    if (window.onParcelSelected) {
+                        window.onParcelSelected(match.parcel);
+                    }
+                    break;
+                }
+            }
+        }
     }
 
     onWindowResize() {
@@ -1123,30 +1147,6 @@ class Viewer3D {
             current = current.parent;
         }
         return null;
-    }
-
-    handleCanvasClick(event) {
-        const rect = this.renderer.domElement.getBoundingClientRect();
-        if (rect.width === 0 || rect.height === 0) return;
-        this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
-        this.raycaster.setFromCamera(this.mouse, this.camera);
-        const visibleMeshes = this.parcelMeshes.filter(p => p.mesh && p.mesh.visible).map(p => p.mesh);
-        const intersects = this.raycaster.intersectObjects(visibleMeshes, true);
-
-        if (intersects.length > 0) {
-            for (let i = 0; i < intersects.length; i++) {
-                const match = this.getParcelFromIntersect(intersects[i].object);
-                if (match) {
-                    this.highlightParcel(match.mesh);
-                    if (window.onParcelSelected) {
-                        window.onParcelSelected(match.parcel);
-                    }
-                    break;
-                }
-            }
-        }
     }
 
     highlightParcel(targetMesh) {

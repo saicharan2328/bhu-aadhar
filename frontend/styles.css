@@ -305,3 +305,23 @@ input[type=range]::-webkit-slider-thumb:hover {
 .warm-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #b08d57;
 }
+
+/* Responsive adjustments for Mobile & Touch screens */
+@media (max-width: 768px) {
+    #inspector-card {
+        top: auto;
+        bottom: 70px;
+        left: 3vw;
+        right: 3vw;
+        width: 94vw;
+        max-height: 55vh;
+        z-index: 25;
+    }
+    #metrics-hud {
+        display: none !important;
+    }
+    #building-callout-toast {
+        width: 92vw;
+        max-width: 380px;
+    }
+}

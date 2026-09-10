@@ -102,12 +102,6 @@
                 <span>Issue 3D ULPIN</span>
             </button>
 
-            <!-- Satellite View / Normal View Toggle -->
-            <button id="sat-toggle-btn" onclick="toggleSatelliteGround()" class="warm-header-btn warm-header-btn-active px-2.5 py-1.5 text-xs flex items-center gap-1 shadow-sm ml-1" title="Toggle Satellite Orthophoto Ground">
-                <i class="fa-solid fa-satellite text-xs text-amber-700"></i>
-                <span id="sat-toggle-label" class="font-semibold text-[11px]">Satellite</span>
-            </button>
-
             <!-- User Auth / Session Link -->
             <a href="/login" class="warm-header-btn px-2.5 py-1.5 text-xs flex items-center gap-1.5 shadow-sm ml-1" title="Login / Switch Account">
                 <i class="fa-solid fa-circle-user text-stone-600 text-sm"></i>
@@ -122,13 +116,33 @@
         <!-- Full-screen WebGL 3D Canvas -->
         <div id="canvas-container" class="absolute inset-0 w-full h-full"></div>
 
-        <!-- Top-Right Helper Pill (Exact Match to Reference Image 1) -->
-        <div class="absolute top-3.5 right-4 z-20 warm-header-btn px-3 py-1.5 rounded-lg flex items-center space-x-2 text-xs shadow-md">
+        <!-- Floating Building Selection Callout / Toast (Instant feedback on click/touch) -->
+        <div id="building-callout-toast" class="absolute top-3.5 left-1/2 -translate-x-1/2 z-30 warm-hud-card px-4 py-2 rounded-xl shadow-xl flex items-center gap-2.5 transition-all duration-300 opacity-0 pointer-events-none scale-95 border border-[#ded3c2]">
+            <div id="toast-icon-wrapper" class="w-7 h-7 rounded-lg bg-[#faeedd] text-[#78350f] flex items-center justify-center shrink-0">
+                <i id="toast-icon" class="fa-solid fa-building text-sm"></i>
+            </div>
+            <div>
+                <div id="toast-title" class="font-bold text-xs text-[#3e2723] leading-tight">Balaji Strata Heights (Tower 166)</div>
+                <div id="toast-desc" class="text-[10px] text-[#786b59] font-mono leading-tight">28NT8638EDC6825F-FLR09-UT146</div>
+            </div>
+            <button onclick="toggleInspectorCard(true)" class="warm-header-btn px-2 py-0.5 text-[10px] ml-1 font-semibold text-[#78350f]">
+                Inspect &rarr;
+            </button>
+        </div>
+
+        <!-- Top-Right Helper Pill -->
+        <div class="absolute top-3.5 right-4 z-20 warm-header-btn px-3 py-1.5 rounded-lg flex items-center space-x-2 text-xs shadow-md hidden sm:flex">
             <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
             <span class="font-bold text-[#451a03]">Interactive 3D WebGL</span>
             <span class="text-stone-400">|</span>
-            <span class="text-stone-600 font-medium">Left-Click: Rotate • Right-Click: Pan • Scroll: Zoom</span>
+            <span class="text-stone-600 font-medium">Touch/Click Building for Details • Drag: Rotate</span>
         </div>
+
+        <!-- Mobile/Tablet Inspector Panel Toggle Button -->
+        <button id="inspector-toggle-btn" onclick="toggleInspectorCard()" class="absolute bottom-4 left-4 z-30 warm-header-btn px-3 py-2 rounded-xl shadow-lg flex items-center gap-2 text-xs font-bold md:hidden">
+            <i class="fa-solid fa-layer-group text-[#b45309]"></i>
+            <span id="inspector-toggle-text">Building Info</span>
+        </button>
 
         <!-- Floating Camera Presets Toolbar -->
         <div class="absolute top-14 right-4 z-20 flex flex-col gap-1.5 warm-hud-card p-1.5 rounded-xl shadow-lg border border-[#ded3c2]">
@@ -151,7 +165,7 @@
         </div>
 
         <!-- Floating Left 3D Parcel Inspector Card (Exact Match to Reference Image 1) -->
-        <aside id="inspector-card" class="absolute top-3.5 left-4 bottom-3.5 z-20 w-[385px] warm-inspector-card rounded-2xl p-4 flex flex-col justify-between shadow-2xl overflow-y-auto warm-scrollbar">
+        <aside id="inspector-card" class="absolute top-3.5 left-4 bottom-3.5 z-20 w-[94vw] sm:w-[385px] max-w-[390px] warm-inspector-card rounded-2xl p-4 flex flex-col justify-between shadow-2xl overflow-y-auto warm-scrollbar">
             <div>
                 <!-- Header: 3D Parcel Inspector Title & Type Badge -->
                 <div class="flex items-center justify-between pb-2 border-b border-[#ded3c2]">

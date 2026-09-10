@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (offBtn) offBtn.classList.remove("warm-header-btn-active");
     }
 
-    showLoading("Initializing Bhu Aadhar 3D", "Setting up WebGL satellite layers...");
+    showLoading("Initializing Bhu Aadhar 3D", "Setting up WebGL 3D Cadastre visualizer...");
     // Initialize 3D WebGL Canvas
     viewer3D = new Viewer3D("canvas-container");
     
@@ -363,18 +363,68 @@ function updateExplodedView(val) {
 }
 
 function toggleSatelliteGround() {
+    // Deprecated - Satellite view removed
     if (!viewer3D) return;
-    const isSat = viewer3D.toggleSatelliteMode();
-    const btn = document.getElementById("sat-toggle-btn");
-    const label = document.getElementById("sat-toggle-label");
-    if (btn && label) {
-        if (isSat) {
-            btn.classList.add("warm-header-btn-active");
-            label.textContent = "Satellite";
-        } else {
-            btn.classList.remove("warm-header-btn-active");
-            label.textContent = "Normal Map";
+    viewer3D.toggleSatelliteMode(false);
+}
+
+function showBuildingCallout(parcel) {
+    const toast = document.getElementById("building-callout-toast");
+    if (!toast || !parcel) return;
+
+    const titleEl = document.getElementById("toast-title");
+    const descEl = document.getElementById("toast-desc");
+    const iconEl = document.getElementById("toast-icon");
+
+    const isRoad = (parcel.zone_type === "ROAD" || parcel.is_road);
+    const isRail = (parcel.zone_type === "RAIL" || parcel.is_railway);
+    const isNode = (parcel.zone_type === "NODE" || parcel.is_infrastructure_node);
+    const isInfra = (parcel.zone_type === "INFRA" || parcel.is_public_service || (parcel.is_infrastructure && !isRoad && !isRail));
+    
+    let name = parcel.govt_building_name || parcel.owner || "3D Cadastre Parcel";
+    let iconClass = "fa-solid fa-building";
+
+    if (isNode) {
+        iconClass = "fa-solid fa-tower-broadcast text-purple-600";
+    } else if (isInfra) {
+        iconClass = "fa-solid fa-building-columns text-cyan-600";
+    } else if (isRail) {
+        iconClass = "fa-solid fa-train text-amber-600";
+    } else if (isRoad) {
+        iconClass = "fa-solid fa-road text-slate-600";
+    }
+
+    if (titleEl) titleEl.textContent = name;
+    if (descEl) descEl.textContent = `${parcel.ulpin_3d} • ${parcel.tenure_type || 'Strata Cadastre'}`;
+    if (iconEl) iconEl.className = `${iconClass} text-sm`;
+
+    toast.classList.remove("opacity-0", "pointer-events-none", "scale-95");
+    toast.classList.add("opacity-100", "scale-100");
+
+    if (window._calloutTimer) clearTimeout(window._calloutTimer);
+    window._calloutTimer = setTimeout(() => {
+        if (toast) {
+            toast.classList.remove("opacity-100", "scale-100");
+            toast.classList.add("opacity-0", "pointer-events-none", "scale-95");
         }
+    }, 4500);
+}
+
+function toggleInspectorCard(forceOpen) {
+    const card = document.getElementById("inspector-card");
+    const btnText = document.getElementById("inspector-toggle-text");
+    if (!card) return;
+
+    if (forceOpen === true) {
+        card.classList.remove("hidden");
+        if (btnText) btnText.textContent = "Hide Info";
+        return;
+    }
+
+    card.classList.toggle("hidden");
+    const isHidden = card.classList.contains("hidden");
+    if (btnText) {
+        btnText.textContent = isHidden ? "Building Info" : "Hide Info";
     }
 }
 
@@ -394,6 +444,14 @@ function toggleToolsPanel() {
 
 function inspectParcel(parcel) {
     if (!parcel) return;
+
+    // Show visual callout notification
+    showBuildingCallout(parcel);
+
+    // Make sure inspector card is visible on mobile/small screen when a building is touched
+    if (window.innerWidth < 768) {
+        toggleInspectorCard(true);
+    }
 
     document.getElementById("inspect-ulpin").textContent = parcel.ulpin_3d || "-";
     document.getElementById("inspect-base-ulpin").textContent = parcel.base_ulpin || "-";
