@@ -488,10 +488,6 @@ class Viewer3D {
 
     initEvents() {
         window.addEventListener("resize", () => this.onWindowResize());
-        if (window.ResizeObserver && this.container) {
-            this.resizeObserver = new ResizeObserver(() => this.onWindowResize());
-            this.resizeObserver.observe(this.container);
-        }
 
         const domEl = this.renderer.domElement;
         this.pointerDownPos = null;
@@ -789,7 +785,11 @@ class Viewer3D {
 
     disposeHierarchy(obj) {
         if (!obj) return;
-        this.scene.remove(obj);
+        if (obj.parent) {
+            obj.parent.remove(obj);
+        } else {
+            this.scene.remove(obj);
+        }
         if (obj.geometry) {
             obj.geometry.dispose();
         }
@@ -801,7 +801,9 @@ class Viewer3D {
             }
         }
         while (obj.children && obj.children.length > 0) {
-            this.disposeHierarchy(obj.children[0]);
+            const child = obj.children[0];
+            obj.remove(child);
+            this.disposeHierarchy(child);
         }
     }
 
@@ -1143,11 +1145,13 @@ class Viewer3D {
 
     getParcelFromIntersect(object) {
         let current = object;
-        while (current && current !== this.scene) {
+        let depth = 0;
+        while (current && current !== this.scene && depth < 20) {
             if (current.userData && current.userData.parcel_data) {
                 return { mesh: current, parcel: current.userData.parcel_data };
             }
             current = current.parent;
+            depth++;
         }
         return null;
     }
