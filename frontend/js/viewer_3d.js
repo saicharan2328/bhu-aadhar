@@ -576,6 +576,10 @@ class Viewer3D {
     }
 
     handlePointerHover(event) {
+        const now = performance.now();
+        if (now - (this._lastHoverTime || 0) < 80) return; // 80ms throttle
+        this._lastHoverTime = now;
+
         const rect = this.renderer.domElement.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) return;
         this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -583,14 +587,11 @@ class Viewer3D {
 
         this.raycaster.setFromCamera(this.mouse, this.camera);
         const visibleMeshes = this.parcelMeshes.filter(p => p.mesh && p.mesh.visible).map(p => p.mesh);
-        const intersects = this.raycaster.intersectObjects(visibleMeshes, true);
+        const intersects = this.raycaster.intersectObjects(visibleMeshes, false);
 
         if (intersects.length > 0) {
-            const match = this.getParcelFromIntersect(intersects[0].object);
-            if (match) {
-                this.renderer.domElement.style.cursor = "pointer";
-                return;
-            }
+            this.renderer.domElement.style.cursor = "pointer";
+            return;
         }
         this.renderer.domElement.style.cursor = "grab";
     }
@@ -612,15 +613,20 @@ class Viewer3D {
 
         this.raycaster.setFromCamera(this.mouse, this.camera);
         const visibleMeshes = this.parcelMeshes.filter(p => p.mesh && p.mesh.visible).map(p => p.mesh);
-        const intersects = this.raycaster.intersectObjects(visibleMeshes, true);
+        
+        // Fast top-level test first, then fallback to recursive if needed
+        let intersects = this.raycaster.intersectObjects(visibleMeshes, false);
+        if (intersects.length === 0) {
+            intersects = this.raycaster.intersectObjects(visibleMeshes, true);
+        }
 
         if (intersects.length > 0) {
             for (let i = 0; i < intersects.length; i++) {
                 const match = this.getParcelFromIntersect(intersects[i].object);
-                if (match) {
+                if (match && match.parcel) {
                     this.lastSelectedTime = performance.now();
                     this.highlightParcel(match.mesh);
-                    if (autoFly && match.parcel) {
+                    if (autoFly) {
                         this.flyToParcel(match.parcel, 60);
                     }
                     if (window.onParcelSelected) {
@@ -790,20 +796,20 @@ class Viewer3D {
         } else {
             this.scene.remove(obj);
         }
-        if (obj.geometry) {
-            obj.geometry.dispose();
-        }
-        if (obj.material && !obj.material.userData?.is_cached) {
-            if (Array.isArray(obj.material)) {
-                obj.material.forEach(m => m.dispose());
-            } else {
-                obj.material.dispose();
+        obj.traverse((child) => {
+            if (child.geometry) {
+                child.geometry.dispose();
             }
-        }
-        while (obj.children && obj.children.length > 0) {
-            const child = obj.children[0];
-            obj.remove(child);
-            this.disposeHierarchy(child);
+            if (child.material && !child.material.userData?.is_cached) {
+                if (Array.isArray(child.material)) {
+                    child.material.forEach(m => m.dispose());
+                } else {
+                    child.material.dispose();
+                }
+            }
+        });
+        if (typeof obj.clear === "function") {
+            obj.clear();
         }
     }
 
