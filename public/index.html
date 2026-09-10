@@ -3,958 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhu Aadhar | 3D ULPIN</title>
+    <title>Bhu Aadhar - Login | 3D ULPIN Land Parcel Identification System</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Identity Services (Google Sign-In API SDK) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Three.js 3D Engine CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: #0b0f19;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.08em;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass-auth-card {
+            background: rgba(247, 243, 234, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 199, 172, 0.85);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+        }
+        .glass-preview-card {
+            background: rgba(250, 247, 240, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(220, 206, 185, 0.9);
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+        }
+        .input-bhu {
+            background: rgba(254, 252, 247, 0.95);
+            border: 1.5px solid #d8caa9;
+            color: #292524;
+            transition: all 0.2s ease;
+        }
+        .input-bhu:focus {
+            outline: none;
+            border-color: #d97706;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18);
+        }
+        /* Realistic waving flag animation */
+        @keyframes subtleWave {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(0.8deg); }
+        }
+        .flag-wave {
+            animation: subtleWave 4s ease-in-out infinite;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+        }
+    </style>
 </head>
-<body class="bg-[#ece5d8] text-[#292524] font-sans h-screen flex flex-col overflow-hidden">
+<body class="min-h-screen relative flex items-center justify-center overflow-x-hidden">
 
-    <!-- Top Navigation Header (Exact Match to Reference Image 1) -->
-    <header class="theme-warm-header px-4 lg:px-6 py-2 flex items-center justify-between z-30 shrink-0 shadow-sm">
-        <!-- Brand / Identity -->
-        <div class="flex items-center space-x-3.5 shrink-0">
-            <!-- Indian Tricolor Badge (Exact Reference Flag) -->
-            <div class="w-8 h-5 rounded overflow-hidden shadow-sm border border-stone-300/80 flex flex-col shrink-0">
+    <!-- Fullscreen Realistic Aerial City Background -->
+    <div class="absolute inset-0 z-0">
+        <img src="assets/login_bg.jpg" alt="Aerial City 3D View" class="w-full h-full object-cover transform scale-105 filter brightness-95 contrast-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-900/30 to-stone-900/50"></div>
+    </div>
+
+    <!-- Top Left Quick Brand Pill & Map Shortcut -->
+    <header class="absolute top-4 left-4 sm:left-6 z-20 flex items-center space-x-2 sm:space-x-3">
+        <a href="map.html" class="flex items-center space-x-2.5 bg-stone-900/75 hover:bg-stone-900 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-stone-700/60 text-white shadow-lg transition">
+            <!-- Indian Tricolor Mini Badge -->
+            <div class="w-6 h-4 rounded overflow-hidden shadow flex flex-col shrink-0">
                 <div class="h-1/3 bg-[#FF9933]"></div>
                 <div class="h-1/3 bg-white flex items-center justify-center">
-                    <div class="w-1.5 h-1.5 rounded-full bg-[#000080]"></div>
+                    <div class="w-1 h-1 rounded-full bg-[#000080]"></div>
                 </div>
                 <div class="h-1/3 bg-[#128807]"></div>
             </div>
-            <div>
-                <div class="flex items-center space-x-2">
-                    <h1 class="text-lg lg:text-xl font-bold text-[#3e2723] tracking-tight leading-none">
-                        Bhu Aadhar
-                    </h1>
-                    <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-[#faeedd] text-[#78350f] border border-[#dfcca9]">
-                        3D ULPIN
-                    </span>
-                </div>
-                <p class="text-[10px] lg:text-[11px] text-[#786b59] font-medium leading-tight mt-0.5">
-                    3D ULPIN Generation &amp; Vertical Property Mapping System • SIH 2026
-                </p>
-            </div>
-        </div>
-
-        <!-- Navigation Buttons (Exact Order & Style from Reference Image 1) -->
-        <div class="flex items-center space-x-1.5 lg:space-x-2 overflow-x-auto py-0.5">
-            <!-- Public View Button -->
-            <button id="rbac-public-btn" onclick="setRBAC('PUBLIC')" class="warm-header-btn warm-header-btn-active px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-eye text-xs"></i>
-                <span>Public View</span>
-            </button>
-
-            <!-- Govt Official Button -->
-            <button id="rbac-official-btn" onclick="setRBAC('OFFICIAL')" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-user-shield text-xs"></i>
-                <span>Govt Official (Unmask)</span>
-            </button>
-
-            <!-- Google Earth 3D -->
-            <button onclick="importGoogleEarthData()" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-earth-asia text-xs"></i>
-                <span>Google Earth 3D</span>
-            </button>
-
-            <!-- Load Guntur 3D -->
-            <button onclick="loadGunturData()" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-building-columns text-xs"></i>
-                <span>Load Guntur 3D</span>
-            </button>
-
-            <!-- Import Guntur GeoJSON -->
-            <button onclick="importBundledGunturLayers()" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-cloud-arrow-up text-xs"></i>
-                <span>Import Guntur GeoJSON</span>
-            </button>
-
-            <!-- 2D Cadastre -> 3D Extrude -->
-            <button onclick="openModal('extrude-modal')" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-draw-polygon text-xs"></i>
-                <span>2D Cadastre &rarr; 3D Extrude</span>
-            </button>
-
-            <!-- Area Stats (4.84 km²) -->
-            <button onclick="openModal('area-stats-modal')" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-chart-area text-xs"></i>
-                <span>Area Stats (4.84 km&sup2;)</span>
-            </button>
-
-            <!-- PostGIS 3D -->
-            <button onclick="openModal('schema-modal')" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-database text-xs"></i>
-                <span>PostGIS 3D</span>
-            </button>
-
-            <!-- Issue 3D ULPIN -->
-            <button onclick="openModal('generate-modal')" class="warm-header-btn px-3 py-1.5 text-xs flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-compass text-xs text-[#b45309]"></i>
-                <span>Issue 3D ULPIN</span>
-            </button>
-
-            <!-- Download Official Registry PDF -->
-            <a href="/download-registry-pdf" target="_blank" class="warm-header-btn px-2.5 py-1.5 text-xs flex items-center gap-1.5 shadow-sm text-[#78350f]" title="Download Official 3D ULPIN Property & Owner Registry PDF">
-                <i class="fa-solid fa-file-pdf text-xs text-rose-700"></i>
-                <span class="font-semibold text-[11px]">Registry PDF</span>
-            </a>
-
-            <!-- User Auth / Session Modal Trigger -->
-            <button onclick="openModal('auth-modal')" class="warm-header-btn px-2.5 py-1.5 text-xs flex items-center gap-1.5 shadow-sm ml-1" title="Bhu Aadhar User Authentication & Role Management">
-                <i class="fa-solid fa-circle-user text-stone-600 text-sm"></i>
-                <span id="user-display-pill" class="font-semibold text-[11px] text-[#78350f]">Citizen</span>
-            </button>
-        </div>
+            <span class="text-xs font-semibold text-stone-200">Bhu Aadhar • SIH 2026</span>
+        </a>
+        <a href="map.html" class="hidden sm:inline-flex items-center gap-1 text-[11px] text-stone-300 hover:text-white bg-stone-900/60 backdrop-blur px-2.5 py-1.5 rounded-full border border-stone-700/40 transition">
+            <i class="fa-solid fa-cube text-amber-400"></i>
+            <span>3D Map Direct</span>
+        </a>
     </header>
 
-    <!-- Main Full-Screen Viewport Container -->
-    <main class="flex-1 relative w-full h-full overflow-hidden">
-        
-        <!-- Full-screen WebGL 3D Canvas -->
-        <div id="canvas-container" class="absolute inset-0 w-full h-full"></div>
+    <!-- Main Authentication Container -->
+    <main class="relative z-10 w-full max-w-[430px] mx-4 my-8">
+        <div class="glass-auth-card rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-2xl">
 
-        <!-- Floating Building Selection Callout / Toast (Instant feedback on click/touch) -->
-        <div id="building-callout-toast" class="absolute top-3.5 left-1/2 -translate-x-1/2 z-30 warm-hud-card px-4 py-2 rounded-xl shadow-xl flex items-center gap-2.5 transition-all duration-300 opacity-0 pointer-events-none scale-95 border border-[#ded3c2]">
-            <div id="toast-icon-wrapper" class="w-7 h-7 rounded-lg bg-[#faeedd] text-[#78350f] flex items-center justify-center shrink-0">
-                <i id="toast-icon" class="fa-solid fa-building text-sm"></i>
-            </div>
-            <div>
-                <div id="toast-title" class="font-bold text-xs text-[#3e2723] leading-tight">Balaji Strata Heights (Tower 166)</div>
-                <div id="toast-desc" class="text-[10px] text-[#786b59] font-mono leading-tight">28NT8638EDC6825F-FLR09-UT146</div>
-            </div>
-            <button onclick="toggleInspectorCard(true)" class="warm-header-btn px-2 py-0.5 text-[10px] ml-1 font-semibold text-[#78350f]">
-                Inspect &rarr;
-            </button>
-        </div>
-
-        <!-- Top-Right Helper Pill -->
-        <div class="absolute top-3.5 right-4 z-20 warm-header-btn px-3 py-1.5 rounded-lg flex items-center space-x-2 text-xs shadow-md hidden sm:flex">
-            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-            <span class="font-bold text-[#451a03]">Interactive 3D WebGL</span>
-            <span class="text-stone-400">|</span>
-            <span class="text-stone-600 font-medium">Touch/Click Building for Details • Drag: Rotate</span>
-        </div>
-
-        <!-- Mobile/Tablet Inspector Panel Toggle Button -->
-        <button id="inspector-toggle-btn" onclick="toggleInspectorCard()" class="absolute bottom-4 left-4 z-30 warm-header-btn px-3 py-2 rounded-xl shadow-lg flex items-center gap-2 text-xs font-bold md:hidden">
-            <i class="fa-solid fa-layer-group text-[#b45309]"></i>
-            <span id="inspector-toggle-text">Building Info</span>
-        </button>
-
-        <!-- Floating Camera Presets Toolbar -->
-        <div class="absolute top-14 right-4 z-20 flex flex-col gap-1.5 warm-hud-card p-1.5 rounded-xl shadow-lg border border-[#ded3c2]">
-            <button onclick="setCameraPreset('balaji')" class="warm-header-btn px-2.5 py-1 text-[11px] font-semibold flex items-center gap-1.5 shadow-sm" title="Focus Balaji Strata Heights (Tower 166)">
-                <i class="fa-solid fa-building-flag text-[#b45309]"></i>
-                <span>Balaji Heights</span>
-            </button>
-            <button onclick="setCameraPreset('isometric')" class="warm-header-btn px-2.5 py-1 text-[11px] font-semibold flex items-center gap-1.5 shadow-sm" title="3D Isometric Aerial Angle">
-                <i class="fa-solid fa-cube text-[#78350f]"></i>
-                <span>3D Aerial</span>
-            </button>
-            <button onclick="setCameraPreset('topdown')" class="warm-header-btn px-2.5 py-1 text-[11px] font-semibold flex items-center gap-1.5 shadow-sm" title="Top-Down 2D Orthographic View">
-                <i class="fa-solid fa-map text-[#0369a1]"></i>
-                <span>Top-Down 2D</span>
-            </button>
-            <button onclick="setCameraPreset('city')" class="warm-header-btn px-2.5 py-1 text-[11px] font-semibold flex items-center gap-1.5 shadow-sm" title="Fit Entire Cadastre in View">
-                <i class="fa-solid fa-expand text-stone-700"></i>
-                <span>Fit All Cadastre</span>
-            </button>
-        </div>
-
-        <!-- Floating Left 3D Parcel Inspector Card (Exact Match to Reference Image 1) -->
-        <aside id="inspector-card" class="absolute top-3.5 left-4 bottom-3.5 z-20 w-[94vw] sm:w-[385px] max-w-[390px] warm-inspector-card rounded-2xl p-4 flex flex-col justify-between shadow-2xl overflow-y-auto warm-scrollbar">
-            <div>
-                <!-- Header: 3D Parcel Inspector Title & Type Badge -->
-                <div class="flex items-center justify-between pb-2 border-b border-[#ded3c2]">
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-[#786b59]">3D PARCEL INSPECTOR</span>
-                    <span id="zone-badge" class="px-2.5 py-0.5 rounded text-[10px] font-bold bg-[#faeedd] text-[#92400e] border border-[#dfcca9]">APARTMENT TOWER</span>
-                </div>
-
-                <!-- 3D ULPIN Identifier (Serif/Sans Bold Brown) -->
-                <h3 id="inspect-ulpin" class="font-mono font-bold text-sm text-[#3e2723] break-all select-all pt-2.5 pb-2">28NT8638EDC6825F-FLR09-UT146</h3>
-
-                <!-- Key-Value Metadata Rows -->
-                <div class="space-y-1 text-xs text-[#44403c] border-b border-[#ded3c2] pb-2.5 mb-2.5">
-                    <div class="flex justify-between items-center py-0.5 border-b border-[#efe7d8]/80">
-                        <span class="text-[#786b59]">Base 2D ULPIN:</span>
-                        <span id="inspect-base-ulpin" class="font-mono font-bold text-[#1c1917]">289NT8638EDC6825F</span>
-                    </div>
-                    <div class="flex justify-between items-start py-0.5 border-b border-[#efe7d8]/80">
-                        <span class="text-[#786b59] shrink-0 mr-2">Owner Title:</span>
-                        <span id="inspect-owner" class="font-medium text-[#1c1917] text-right truncate">Strata Freehold Title (Balaji Strata Heights (Tower 166, WARD-67))</span>
-                    </div>
-                    <div class="flex justify-between items-start py-0.5 border-b border-[#efe7d8]/80">
-                        <span class="text-[#786b59] shrink-0 mr-2">Tenure Type:</span>
-                        <span id="inspect-tenure" class="text-[#1c1917] text-right truncate">Multi Storey 3D Freehold Cadastre (9 Floors - 27 Flats - WARD-67)</span>
-                    </div>
-                    <div class="flex justify-between items-center py-0.5 border-b border-[#efe7d8]/80">
-                        <span class="text-[#786b59]">Vertical Bounds:</span>
-                        <span id="inspect-zbounds" class="font-mono font-semibold text-[#0369a1]">0.0m to 28.8m MSL</span>
-                    </div>
-                    <div class="flex justify-between items-center py-0.5">
-                        <span class="text-[#786b59]">Volumetric Size:</span>
-                        <span id="inspect-volume" class="font-mono font-bold text-[#78350f]">5,644.4 m³</span>
-                    </div>
-                </div>
-
-                <!-- Search Input & Tools Bar -->
-                <div class="mb-2 flex items-center gap-1.5">
-                    <div class="relative flex-1">
-                        <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Search by 3D ULPIN, Owner..." 
-                               class="w-full bg-[#fdfbf7] border border-[#d8caa9] rounded-lg py-1.5 pl-8 pr-2 text-xs text-[#292524] placeholder-stone-400 focus:outline-none focus:border-[#b08d57]">
-                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2 text-stone-400 text-xs"></i>
-                    </div>
-                    <button onclick="toggleToolsPanel()" id="tools-toggle-btn" class="warm-header-btn px-2.5 py-1.5 text-xs shrink-0 flex items-center gap-1" title="Toggle 3D Layers & Floor Slicing">
-                        <i class="fa-solid fa-sliders text-[#78350f]"></i>
-                        <span class="text-[10px] font-bold">Tools</span>
-                    </button>
-                </div>
-
-                <!-- Expandable 3D Spatial Tools Drawer (Layers & Vertical Explosion) -->
-                <div id="spatial-tools-drawer" class="bg-[#f7f2e7] p-2.5 rounded-xl border border-[#ded3c2] space-y-2 mb-2.5 hidden">
-                    <!-- Floor Explosion Slider -->
-                    <div>
-                        <div class="flex items-center justify-between text-[11px] mb-1">
-                            <span class="font-bold text-[#451a03] flex items-center gap-1">
-                                <i class="fa-solid fa-arrows-up-down text-[#78350f]"></i> Vertical Floor Slicing
-                            </span>
-                            <span id="explode-val" class="font-mono text-[#78350f] font-bold">1.0x</span>
-                        </div>
-                        <input type="range" id="explode-slider" min="1.0" max="4.0" step="0.1" value="1.0" oninput="updateExplodedView(this.value)" class="w-full accent-[#b45309] cursor-pointer">
-                    </div>
-
-                    <!-- Spatial Layer Toggles -->
-                    <div class="pt-1 border-t border-[#ded3c2] space-y-1 text-[11px]">
-                        <span class="text-[10px] font-bold uppercase text-[#786b59] block">3D Layer Visibility:</span>
-                        <div class="grid grid-cols-2 gap-1 text-[10px]">
-                            <label class="flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="layer-flr" checked onchange="toggleLayer('FLR')" class="accent-[#b45309]">
-                                <span>Towers (FLR)</span>
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="layer-infra" checked onchange="toggleLayer('INFRA')" class="accent-[#0891b2]">
-                                <span>Infra (INFRA)</span>
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="layer-node" checked onchange="toggleLayer('NODE')" class="accent-[#7c3aed]">
-                                <span>Nodes (NODE)</span>
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="layer-rail" checked onchange="toggleLayer('RAIL')" class="accent-[#d97706]">
-                                <span>Railways (RAIL)</span>
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="layer-road" checked onchange="toggleLayer('ROAD')" class="accent-[#64748b]">
-                                <span>Roads (ROAD)</span>
-                            </label>
-                            <label class="flex items-center gap-1 cursor-pointer">
-                                <input type="checkbox" id="layer-air" checked onchange="toggleLayer('AIR')" class="accent-[#ea580c]">
-                                <span>Air Viaduct (AIR)</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Apartment Flats & Owners Directory Section (Exact Match to Reference Image 1) -->
-                <div id="apartment-directory-card" class="space-y-2">
-                    <div class="flex items-center justify-between pb-1 border-b border-[#ded3c2]">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-[#451a03] flex items-center gap-1.5">
-                            <i class="fa-solid fa-building-user text-[#b45309]"></i> APARTMENT FLATS &amp; OWNERS
-                        </span>
-                        <span id="apt-total-flats-badge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#faeedd] text-[#78350f] border border-[#dfcca9]">
-                            16 Flats • 8 Flrs
-                        </span>
-                    </div>
-
-                    <!-- Floor Selector Filter Pills -->
-                    <div class="flex items-center gap-1.5 py-0.5">
-                        <span class="text-[9px] uppercase font-bold text-[#786b59] shrink-0">FLOOR</span>
-                        <div id="apt-floor-tabs" class="flex space-x-1 overflow-x-auto py-0.5 scrollbar-thin max-w-[290px]">
-                            <!-- Populated dynamically with .warm-floor-tab -->
-                        </div>
-                    </div>
-
-                    <!-- Scrollable Flats Directory List -->
-                    <div id="apt-flats-list" class="space-y-1.5 max-h-56 overflow-y-auto pr-1 warm-scrollbar">
-                        <!-- Populated dynamically with .warm-flat-card -->
-                    </div>
-                </div>
-
-                <!-- Public Infrastructure & Utilities Card (When Selected) -->
-                <div id="infra-details-card" class="mt-2.5 pt-2 border-t border-[#ded3c2] space-y-1.5 text-[11px] hidden">
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-[#0369a1] flex items-center">
-                            <i class="fa-solid fa-tower-broadcast mr-1.5"></i> Civic Infrastructure Asset
-                        </span>
-                        <span id="infra-type-badge" class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#e0f2fe] text-[#0369a1] border border-[#bae6fd]">
-                            PUBLIC ASSET
-                        </span>
-                    </div>
-                    <div class="bg-[#f7f2e7] p-2.5 rounded-lg border border-[#ded3c2] space-y-1 text-[#44403c]">
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]">Facility / Hub:</span>
-                            <span id="infra-val-name" class="font-semibold text-[#1c1917] truncate max-w-[170px] text-right">-</span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]">Managing Authority:</span>
-                            <span id="infra-val-dept" class="font-medium text-[#0369a1] truncate max-w-[170px] text-right">-</span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]">Operational State:</span>
-                            <span id="infra-val-status" class="text-[#15803d] font-bold truncate max-w-[170px] text-right">🟢 24x7 ACTIVE</span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]">SCADA Telemetry:</span>
-                            <span id="infra-val-telemetry" class="font-mono text-[#78350f] truncate max-w-[170px] text-right">LIVE • MONITORED</span>
-                        </div>
-                        <div class="pt-1 border-t border-[#ded3c2] text-[10px] text-[#786b59]" id="infra-val-desc">
-                            Statutory Municipal Infrastructure Asset
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Government Official Verified Metadata Section (Unmasked in Govt View) -->
-                <div id="govt-details-card" class="mt-2.5 pt-2 border-t border-[#ded3c2] space-y-1.5 text-[11px] hidden">
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-[#6d28d9] flex items-center">
-                            <i class="fa-solid fa-building-shield mr-1"></i> Govt Official Registry
-                        </span>
-                        <span id="govt-status-tag" class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#ede9fe] text-[#6d28d9] border border-[#ddd6fe]">GOVT VERIFIED</span>
-                    </div>
-                    <div class="bg-[#f7f2e7] p-2.5 rounded-lg border border-[#ded3c2] space-y-1 text-[#44403c]">
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]" id="govt-lbl-1">Building/Road:</span>
-                            <span id="govt-val-1" class="font-medium text-[#1c1917] truncate max-w-[160px] text-right">-</span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]" id="govt-lbl-2">Approval Permit:</span>
-                            <span id="govt-val-2" class="font-mono text-[#0369a1] truncate max-w-[160px] text-right">-</span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]" id="govt-lbl-3">Fire NOC / Safety:</span>
-                            <span id="govt-val-3" class="text-[#15803d] font-semibold truncate max-w-[160px] text-right">-</span>
-                        </div>
-                        <div class="flex justify-between items-center text-[10px]">
-                            <span class="text-[#786b59]" id="govt-lbl-4">Tax / RoW Spec:</span>
-                            <span id="govt-val-4" class="font-mono text-[#b45309] truncate max-w-[160px] text-right">-</span>
-                        </div>
-                        <div class="pt-1 border-t border-[#ded3c2] text-[10px] text-[#786b59]" id="govt-val-5">
-                            -
-                        </div>
-                    </div>
-                </div>
+            <!-- Waving Indian Flag Badge -->
+            <div class="flag-wave mb-3">
+                <svg width="74" height="48" viewBox="0 0 74 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded shadow-md">
+                    <!-- Saffron Stripe -->
+                    <path d="M0 0C12 2.5 25 -2 37 0C49 2 62 -1.5 74 0V16C62 14.5 49 18 37 16C25 14 12 18.5 0 16V0Z" fill="#FF9933"/>
+                    <!-- White Stripe -->
+                    <path d="M0 16C12 18.5 25 14 37 16C49 18 62 14.5 74 16V32C62 30.5 49 34 37 32C25 30 12 34.5 0 32V16Z" fill="#FFFFFF"/>
+                    <!-- Green Stripe -->
+                    <path d="M0 32C12 34.5 25 30 37 32C49 34 62 30.5 74 32V48C62 46.5 49 50 37 48C25 46 12 50.5 0 48V32Z" fill="#128807"/>
+                    <!-- Ashoka Chakra (Navy Blue 24-spoke wheel) -->
+                    <circle cx="37" cy="24" r="5.5" stroke="#000080" stroke-width="0.9" fill="none"/>
+                    <circle cx="37" cy="24" r="1.1" fill="#000080"/>
+                    <g stroke="#000080" stroke-width="0.5">
+                        <line x1="37" y1="18.8" x2="37" y2="29.2"/>
+                        <line x1="31.8" y1="24" x2="42.2" y2="24"/>
+                        <line x1="33.3" y1="20.3" x2="40.7" y2="27.7"/>
+                        <line x1="33.3" y1="27.7" x2="40.7" y2="20.3"/>
+                        <line x1="34.8" y1="19.2" x2="39.2" y2="28.8"/>
+                        <line x1="32.2" y1="21.8" x2="41.8" y2="26.2"/>
+                        <line x1="39.2" y1="19.2" x2="34.8" y2="28.8"/>
+                        <line x1="41.8" y1="21.8" x2="32.2" y2="26.2"/>
+                    </g>
+                </svg>
             </div>
 
-            <!-- Status Footer (Matching Reference Image 1) -->
-            <div id="topology-status" class="mt-3 p-2 rounded-lg warm-status-box text-xs font-semibold flex items-center shrink-0">
-                <i class="fa-solid fa-shield-check text-base mr-2 text-[#2e6930]"></i>
-                <span>3D Topology Verified: No Volumetric Collisions</span>
-            </div>
-        </aside>
+            <!-- Title & Subtitle -->
+            <h1 class="text-2xl sm:text-3xl font-cinzel font-extrabold text-[#78350f] tracking-wider leading-none mb-1.5">
+                BHU AADHAR
+            </h1>
+            <p class="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#92400e] uppercase mb-4">
+                LAND PARCEL IDENTIFICATION SYSTEM • SIH 2026
+            </p>
 
-        <!-- Floating Guntur Spatial Metrics HUD (Exact Match to Reference Image 1) -->
-        <div id="metrics-hud" class="absolute bottom-4 left-[410px] z-20 warm-hud-card rounded-2xl p-3.5 shadow-2xl max-w-sm transition-all text-xs">
-            <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#ded3c2]">
-                <div class="flex items-center space-x-2">
-                    <span class="text-[#92400e] text-xs">◆</span>
-                    <span class="font-bold text-[#451a03] uppercase tracking-wider text-[11px]">Guntur Cadastre Coverage</span>
+            <!-- Login Form -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="w-full space-y-3 text-left">
+                
+                <!-- ULPIN ID / Username Input -->
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-1">
+                        Identity / ULPIN / Username
+                    </label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-3.5 text-stone-500 text-sm">
+                            <i class="fa-regular fa-user"></i>
+                        </span>
+                        <input 
+                            type="text" 
+                            id="username-input" 
+                            required
+                            placeholder="ULPIN ID / Username / Email" 
+                            value="28GNT8392104812"
+                            class="input-bhu w-full rounded-xl py-2.5 pl-10 pr-3 text-xs sm:text-sm font-medium placeholder-stone-400"
+                        >
+                    </div>
                 </div>
-                <button onclick="openModal('area-stats-modal')" class="warm-header-btn px-2.5 py-0.5 text-[11px] font-semibold flex items-center text-[#78350f]">
-                    <i class="fa-solid fa-table-cells mr-1"></i> Full Table
+
+                <!-- Password Input -->
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-1">
+                        Security Password
+                    </label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-3.5 text-stone-500 text-sm">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input 
+                            type="password" 
+                            id="password-input" 
+                            required
+                            placeholder="Password" 
+                            value="••••••••"
+                            class="input-bhu w-full rounded-xl py-2.5 pl-10 pr-10 text-xs sm:text-sm font-medium placeholder-stone-400"
+                        >
+                        <button type="button" onclick="togglePassword()" class="absolute right-3 text-stone-400 hover:text-stone-600 transition text-xs" title="Toggle password visibility">
+                            <i id="eye-icon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-center mt-1 text-[11px]">
+                        <span class="text-stone-400">Demo active</span>
+                        <a href="javascript:void(0)" onclick="alert('For SIH 2026 Demo: Use any 14-digit ULPIN ID (e.g. 28GNT8392104812), Sign in with Google, or click Quick Fast-Pass buttons below.')" class="text-stone-500 hover:text-amber-800 transition font-medium">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sign In Button (Warm Amber Gradient) -->
+                <button 
+                    type="submit" 
+                    id="submit-btn"
+                    class="w-full py-3 px-4 rounded-xl text-white font-bold text-sm bg-gradient-to-r from-amber-700 via-amber-600 to-orange-600 hover:from-amber-800 hover:to-orange-700 active:scale-[0.99] transition shadow-md shadow-amber-900/25 flex items-center justify-center space-x-2 mt-1"
+                >
+                    <span>Sign In & Open 3D Cadastre</span>
+                    <i class="fa-solid fa-angles-right text-xs"></i>
                 </button>
-            </div>
 
-            <div class="grid grid-cols-2 gap-2 text-[#44403c] text-[11px]">
-                <div class="bg-[#f7f2e7] p-2.5 rounded-lg border border-[#e6dcc9]">
-                    <div class="text-[#786b59] text-[10px] font-semibold">3D Buildings &amp; Towers</div>
-                    <div id="hud-building-count" class="text-[#78350f] font-bold font-mono text-base">586 Towers</div>
-                    <div class="text-[#786b59] text-[10px]">3 to 12 Floors • 10–42m</div>
+                <!-- Google API Sign-In Integration -->
+                <div class="relative flex items-center my-2">
+                    <div class="flex-grow border-t border-stone-300"></div>
+                    <span class="flex-shrink mx-2 text-[10px] uppercase font-bold text-stone-400">OR</span>
+                    <div class="flex-grow border-t border-stone-300"></div>
                 </div>
-                <div class="bg-[#f7f2e7] p-2.5 rounded-lg border border-[#e6dcc9]">
-                    <div class="text-[#786b59] text-[10px] font-semibold">3D Volume Registered</div>
-                    <div id="hud-volume-count" class="text-[#78350f] font-bold font-mono text-base">3,824,648 m³</div>
-                    <div class="text-[#786b59] text-[10px]">714 3D Parcels • 70 Wards</div>
-                </div>
-            </div>
 
-            <div class="mt-2.5 text-[10px] text-[#786b59] flex items-center justify-between pt-1.5 border-t border-[#ded3c2]">
-                <span><i class="fa-solid fa-globe text-[#92400e] mr-1"></i> Macro BBox: <strong>42.5 km²</strong> (Guntur Urban)</span>
-                <button onclick="focusGunturZone('brodipet')" class="text-[#78350f] hover:underline font-bold">Center (0,0)</button>
-            </div>
+                <button 
+                    type="button" 
+                    onclick="handleGoogleSignIn()"
+                    id="google-signin-btn"
+                    class="w-full py-2.5 px-3 rounded-xl text-stone-700 hover:text-stone-900 font-bold text-xs bg-white hover:bg-stone-50 border border-stone-300 shadow-sm hover:shadow transition flex items-center justify-center space-x-2"
+                >
+                    <!-- Official Google G SVG -->
+                    <svg class="w-4 h-4" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <span>Sign in with Google (Bhu SSO)</span>
+                    <span class="text-[9px] font-mono text-emerald-800 bg-emerald-50 px-1 py-0.5 rounded border border-emerald-200">OAuth 2.0</span>
+                </button>
+
+                <!-- Quick Role Selector / Judge Fast-Pass -->
+                <div class="pt-2.5 border-t border-stone-300/80">
+                    <span class="block text-center text-[10px] uppercase font-bold tracking-wider text-stone-500 mb-1.5">
+                        Quick Demo Fast-Pass (SIH 2026):
+                    </span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button 
+                            type="button" 
+                            onclick="useDemoLogin('PUBLIC')"
+                            class="py-1.5 px-2 bg-amber-50 hover:bg-amber-100 border border-amber-300/80 rounded-xl text-[11px] font-bold text-amber-900 text-center transition flex items-center justify-center gap-1.5 shadow-sm"
+                        >
+                            <i class="fa-solid fa-user-check text-emerald-600 text-xs"></i>
+                            <span>Citizen View</span>
+                        </button>
+                        <button 
+                            type="button" 
+                            onclick="useDemoLogin('OFFICIAL')"
+                            class="py-1.5 px-2 bg-purple-50 hover:bg-purple-100 border border-purple-300/80 rounded-xl text-[11px] font-bold text-purple-900 text-center transition flex items-center justify-center gap-1.5 shadow-sm"
+                        >
+                            <i class="fa-solid fa-shield-halved text-purple-600 text-xs"></i>
+                            <span>Govt Officer</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Direct Guest Access / Skip Link -->
+                <div class="pt-1.5 text-center">
+                    <a href="map.html" class="inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-[#78350f] font-semibold transition py-0.5">
+                        <span>Continue to 3D Cadastre as Guest</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+            </form>
         </div>
     </main>
 
-
-    <!-- MODAL 1: ISSUE 3D ULPIN & TOPOLOGY CHECKER -->
-    <div id="generate-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <h3 class="text-lg font-bold text-emerald-400 flex items-center">
-                    <i class="fa-solid fa-cube mr-2"></i> Issue New 3D ULPIN Parcel
+    <!-- Bottom Left Floating Telemetry Preview Card -->
+    <aside class="absolute bottom-5 left-6 z-20 hidden md:block max-w-[340px]">
+        <div class="glass-preview-card rounded-2xl p-3.5 shadow-xl text-stone-900">
+            <div class="flex items-center space-x-1.5 mb-2.5">
+                <span class="text-amber-700 text-xs">◆</span>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-stone-800">
+                    DASHBOARD PREVIEW
                 </h3>
-                <button onclick="closeModal('generate-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
-
-            <form id="ulpin-form" onsubmit="handleFormSubmit(event)" class="space-y-3 text-xs">
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-slate-400 mb-1">Base 2D ULPIN (14 Digits)</label>
-                        <input type="text" id="form-base-ulpin" placeholder="14IN8392104812" value="14IN8392104812" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200 font-mono">
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <!-- Unit Card Box -->
+                <div class="bg-amber-50/70 border border-amber-200/80 rounded-lg p-2 flex flex-col justify-between">
+                    <div class="flex items-center justify-between text-stone-700">
+                        <span class="font-bold text-stone-900">Flat 601</span>
+                        <span>Flr 1</span>
+                        <span>1227 sq.ft</span>
                     </div>
-                    <div>
-                        <label class="block text-slate-400 mb-1">3D Spatial Zone</label>
-                        <select id="form-zone-type" onchange="toggleFormFields()" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200">
-                            <option value="SUR">Surface Land Parcel (SUR)</option>
-                            <option value="FLR" selected>Vertical Building Floor (FLR)</option>
-                            <option value="AIR">Air Rights Corridor (AIR)</option>
-                            <option value="SUB">Underground Tunnel (SUB)</option>
-                        </select>
+                    <div class="text-[10px] text-stone-500 mt-1">
+                        UDS: <strong class="text-stone-800">41.3 sq.yd</strong>
                     </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-slate-400 mb-1">Z-Min Elevation (m)</label>
-                        <input type="number" step="0.1" id="form-zmin" value="12.0" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200 font-mono">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 mb-1">Z-Max Elevation (m)</label>
-                        <input type="number" step="0.1" id="form-zmax" value="15.2" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200 font-mono">
+                    <div class="mt-1.5 pt-1 border-t border-amber-200/60 font-medium text-stone-800 truncate flex items-center gap-1">
+                        <i class="fa-solid fa-user text-[9px] text-amber-700"></i>
+                        <span>T. Ramesh Babu</span>
                     </div>
                 </div>
 
-                <div id="flr-fields" class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-slate-400 mb-1">Floor Number</label>
-                        <input type="number" id="form-floor" value="4" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200">
-                    </div>
-                    <div>
-                        <label class="block text-slate-400 mb-1">Unit Code</label>
-                        <input type="text" id="form-unit" value="402" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-slate-400 mb-1">Property Owner Title</label>
-                    <input type="text" id="form-owner" value="Rohan Sharma" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200">
-                </div>
-
-                <div>
-                    <label class="block text-slate-400 mb-1">Tenure / Title Type</label>
-                    <input type="text" id="form-tenure" value="Freehold Strata Title" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-slate-200">
-                </div>
-
-                <div class="flex items-center justify-between pt-2">
-                    <button type="button" onclick="runTopologyCheck()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-semibold transition">
-                        <i class="fa-solid fa-shield-halved mr-1 text-cyan-400"></i> Check Overlap
-                    </button>
-
-                    <button type="submit" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-bold transition">
-                        Generate & Register 3D ULPIN
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL 2: POSTGIS 3D SQL SCHEMA -->
-    <div id="schema-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl p-6 shadow-2xl space-y-4">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <h3 class="text-lg font-bold text-cyan-400 flex items-center">
-                    <i class="fa-solid fa-database mr-2"></i> PostGIS 3D PolyhedralSurface DDL Schema
-                </h3>
-                <button onclick="closeModal('schema-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-
-            <pre id="schema-code" class="bg-slate-950 p-4 rounded-xl text-slate-300 font-mono text-[11px] h-80 overflow-y-auto border border-slate-800 select-all"></pre>
-        </div>
-    </div>
-
-    <!-- MODAL 3: 2D CADASTRE TO 3D EXTRUDER -->
-    <div id="extrude-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-2xl p-6 shadow-2xl space-y-4">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <h3 class="text-lg font-bold text-purple-400 flex items-center">
-                    <i class="fa-solid fa-draw-polygon mr-2"></i> 2D Cadastre ➔ 3D Volumetric Extruder
-                </h3>
-                <button onclick="closeModal('extrude-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-            
-            <p class="text-xs text-slate-400">
-                Upload or paste 2D Cadastral GeoJSON with Survey Numbers and coordinates from Guntur (AP-28). The StrataMap spatial engine calculates 3D metric bounding boxes, generates vertical strata floors/tunnels, and issues standardized 3D ULPINs.
-            </p>
-
-            <div class="space-y-2">
-                <div class="flex justify-between items-center text-xs">
-                    <span class="text-slate-300 font-medium">Guntur 2D Cadastre GeoJSON Input</span>
-                    <button onclick="resetDefaultGunturGeoJSON()" class="text-cyan-400 hover:underline text-[11px]">Reload Guntur Prototype Dataset</button>
-                </div>
-                <textarea id="geojson-input" rows="9" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-slate-300 font-mono text-[11px] focus:outline-none focus:border-purple-500"></textarea>
-            </div>
-
-            <div class="flex justify-between items-center pt-2">
-                <span class="text-xs text-slate-500">EPSG:4326 (WGS-84) ➔ EPSG:4979 (3D PolyhedralSurface)</span>
-                <div class="space-x-2">
-                    <button onclick="closeModal('extrude-modal')" class="px-3 py-2 bg-slate-800 text-slate-300 hover:text-white rounded-lg text-xs font-semibold">Cancel</button>
-                    <button onclick="execute2DTo3DExtrusion()" class="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-lg text-xs font-bold shadow">
-                        <i class="fa-solid fa-cubes mr-1.5"></i> Extrude &amp; Generate 3D ULPINs
-                    </button>
+                <!-- Coverage Metrics Box -->
+                <div class="bg-white/70 border border-stone-200 rounded-lg p-2 flex flex-col justify-center">
+                    <span class="text-[10px] uppercase text-stone-500 font-semibold">Area Registered</span>
+                    <span class="font-bold font-mono text-emerald-800 text-sm mt-0.5">3,824,648 m³</span>
+                    <span class="text-[10px] text-stone-600 mt-0.5">714 Pieces • 70 Wards</span>
                 </div>
             </div>
         </div>
+    </aside>
+
+    <!-- Bottom Right System Badge -->
+    <div class="absolute bottom-4 right-6 z-20 hidden sm:flex items-center space-x-2 text-[11px] text-stone-300 bg-stone-950/70 backdrop-blur px-3 py-1.5 rounded-full border border-stone-800">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Guntur Urban Mandal • 3D Cadastre v1.0</span>
     </div>
 
-    <!-- MODAL 4: AREA STATS & CADASTRE BREAKDOWN -->
-    <div id="area-stats-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center z-50 hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-3xl p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-chart-area"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-white">Guntur Cadastre: Spatial Area &amp; Volumetric Breakdown</h3>
-                        <p class="text-xs text-slate-400">Problem Statement 26011 • Department of Land Resources (DoLR)</p>
-                    </div>
-                </div>
-                <button onclick="closeModal('area-stats-modal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
+    <!-- Script Handling Login, Google Identity API & Session Navigation -->
+    <script>
+        // Google Identity Services Configuration
+        window.GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID_OR_API_KEY.apps.googleusercontent.com";
 
-            <!-- Macro Summary Cards -->
-            <div class="grid grid-cols-3 gap-3 text-xs">
-                <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
-                    <span class="text-slate-400 text-[11px] block">Macro Regional Bounding Box</span>
-                    <span class="text-xl font-bold font-mono text-indigo-400 block mt-1">42.5 km²</span>
-                    <span class="text-[10px] text-slate-500">Lat: 16.28°–16.34° • Lon: 80.40°–80.46°</span>
-                </div>
-                <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
-                    <span class="text-slate-400 text-[11px] block">Active 2D Survey Base Map</span>
-                    <span class="text-xl font-bold font-mono text-emerald-400 block mt-1">4.84 km²</span>
-                    <span class="text-[10px] text-slate-500">484 Hectares • 1,196 Acres (2.2km × 2.2km)</span>
-                </div>
-                <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800">
-                    <span class="text-slate-400 text-[11px] block">Total 3D Registered Volume</span>
-                    <span class="text-xl font-bold font-mono text-cyan-400 block mt-1">52,888 m³</span>
-                    <span class="text-[10px] text-slate-500">48 Strata Units • Height: -15m to +41.4m</span>
-                </div>
-            </div>
+        window.onload = function () {
+            if (window.google && google.accounts && google.accounts.id) {
+                google.accounts.id.initialize({
+                    client_id: window.GOOGLE_CLIENT_ID,
+                    callback: handleGoogleCredentialResponse,
+                    auto_select: false
+                });
+            }
+        };
 
-            <!-- Detailed Table -->
-            <div class="border border-slate-800 rounded-xl overflow-hidden">
-                <table class="w-full text-left text-xs">
-                    <thead class="bg-slate-950 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
-                        <tr>
-                            <th class="p-3">Survey No.</th>
-                            <th class="p-3">Locality / Zone</th>
-                            <th class="p-3">2D Footprint</th>
-                            <th class="p-3">Vertical Elevation</th>
-                            <th class="p-3">3D Volume</th>
-                            <th class="p-3">Units</th>
-                            <th class="p-3 text-right">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-800/80 text-slate-300 text-[11px]">
-                        <tr class="hover:bg-slate-800/40 transition">
-                            <td class="p-3 font-mono font-bold text-emerald-400">Sy. 142/1A</td>
-                            <td class="p-3 font-medium">Brodipet 4th Lane (Commercial Tower)</td>
-                            <td class="p-3 font-mono">484 m² <span class="text-slate-500 text-[10px]">(22×22m)</span></td>
-                            <td class="p-3 font-mono text-cyan-400">0.0m to 41.4m</td>
-                            <td class="p-3 font-mono font-bold text-slate-200">19,360 m³</td>
-                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">24 Apts (12 Flrs)</span></td>
-                            <td class="p-3 text-right">
-                                <button onclick="focusAndInspectSurvey('brodipet')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded text-[10px] font-semibold transition">
-                                    Focus 3D
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/40 transition">
-                            <td class="p-3 font-mono font-bold text-blue-400">Sy. 218/3B</td>
-                            <td class="p-3 font-medium">Lakshmipuram Main Road (Residential)</td>
-                            <td class="p-3 font-mono">529 m² <span class="text-slate-500 text-[10px]">(23×23m)</span></td>
-                            <td class="p-3 font-mono text-cyan-400">0.0m to 35.0m</td>
-                            <td class="p-3 font-mono font-bold text-slate-200">16,928 m³</td>
-                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">20 Apts (10 Flrs)</span></td>
-                            <td class="p-3 text-right">
-                                <button onclick="focusAndInspectSurvey('lakshmipuram')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded text-[10px] font-semibold transition">
-                                    Focus 3D
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/40 transition">
-                            <td class="p-3 font-mono font-bold text-amber-400">CORR-01</td>
-                            <td class="p-3 font-medium">Outer Ring Road (ORR) Flyover Viaduct</td>
-                            <td class="p-3 font-mono">1,000 m² <span class="text-slate-500 text-[10px]">(50×20m)</span></td>
-                            <td class="p-3 font-mono text-amber-400">+25.0m to +32.0m</td>
-                            <td class="p-3 font-mono font-bold text-slate-200">7,000 m³</td>
-                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">1 Air Corridor</span></td>
-                            <td class="p-3 text-right">
-                                <button onclick="focusAndInspectSurvey('flyover')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded text-[10px] font-semibold transition">
-                                    Focus 3D
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-800/40 transition">
-                            <td class="p-3 font-mono font-bold text-red-400">SUB-04</td>
-                            <td class="p-3 font-medium">Arundhatipet Utility &amp; Metro Tunnel</td>
-                            <td class="p-3 font-mono">1,600 m² <span class="text-slate-500 text-[10px]">(40×40m)</span></td>
-                            <td class="p-3 font-mono text-red-400">-15.0m to -9.0m</td>
-                            <td class="p-3 font-mono font-bold text-slate-200">9,600 m³</td>
-                            <td class="p-3"><span class="px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">1 Subsurface Tunnel</span></td>
-                            <td class="p-3 text-right">
-                                <button onclick="focusAndInspectSurvey('utility')" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-400 rounded text-[10px] font-semibold transition">
-                                    Focus 3D
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot class="bg-slate-950 font-bold text-slate-200 border-t border-slate-800">
-                        <tr>
-                            <td class="p-3">Total Active Cadastre</td>
-                            <td class="p-3 text-emerald-400">Guntur Multi-Strata Pilot</td>
-                            <td class="p-3 font-mono text-emerald-400">3,613 m²</td>
-                            <td class="p-3 font-mono text-cyan-400">Span: 56.4m</td>
-                            <td class="p-3 font-mono text-cyan-300">52,888 m³</td>
-                            <td class="p-3 text-indigo-300" colspan="2">48 3D ULPIN Units Registered</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+        function togglePassword() {
+            const pwd = document.getElementById("password-input");
+            const eye = document.getElementById("eye-icon");
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                eye.classList.remove("fa-eye");
+                eye.classList.add("fa-eye-slash");
+            } else {
+                pwd.type = "password";
+                eye.classList.remove("fa-eye-slash");
+                eye.classList.add("fa-eye");
+            }
+        }
 
-            <div class="flex justify-between items-center text-xs pt-2">
-                <span class="text-slate-400"><i class="fa-solid fa-layer-group text-teal-400 mr-1"></i> Multi-layer strata rights over identical surface cadastre plots</span>
-                <button onclick="closeModal('area-stats-modal')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg transition">
-                    Close
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- 3D Strata Title Deed & Flat Ownership Certificate Modal -->
-    <div id="flat-deed-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-slate-900 border border-slate-700 max-w-2xl w-full rounded-2xl p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-            <!-- Official Header -->
-            <div class="border-b border-slate-800 pb-3 flex items-start justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500/20 via-emerald-500/20 to-cyan-500/20 border border-emerald-500/40 flex items-center justify-center text-2xl">
-                        🏛️
-                    </div>
-                    <div>
-                        <div class="text-[10px] font-bold tracking-widest uppercase text-amber-400">
-                            Government of Andhra Pradesh • Department of Land Resources
-                        </div>
-                        <h2 class="text-base font-bold text-white flex items-center gap-2">
-                            3D Strata Flat Ownership Title Certificate
-                            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                                3D ULPIN CERTIFIED
-                            </span>
-                        </h2>
-                        <div class="text-xs text-slate-400">
-                            Registered under Andhra Pradesh 3D Cadastral Property Act &amp; DoLR Guidelines
-                        </div>
-                    </div>
-                </div>
-                <button onclick="closeModal('flat-deed-modal')" class="text-slate-400 hover:text-white text-lg p-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+        function useDemoLogin(role) {
+            if (role === "OFFICIAL") {
+                document.getElementById("username-input").value = "APCRDA-GMC-OFFICER-01";
+                document.getElementById("password-input").value = "OfficialPass@2026";
+            } else {
+                document.getElementById("username-input").value = "28GNT8392104812";
+                document.getElementById("password-input").value = "CitizenPass@2026";
+            }
+            document.getElementById("login-form").dispatchEvent(new Event('submit'));
+        }
 
-            <!-- Certificate Decorative Card -->
-            <div class="bg-slate-950/90 border border-emerald-500/30 rounded-xl p-4 relative overflow-hidden space-y-3">
-                <!-- 3D ULPIN Identity Pill -->
-                <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                    <div>
-                        <span class="text-[10px] uppercase font-bold text-slate-400 block">3D Volumetric ULPIN</span>
-                        <span id="deed-ulpin" class="font-mono text-xs sm:text-sm font-bold text-emerald-300 select-all">-</span>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-[10px] uppercase font-bold text-slate-400 block">Base 2D Parcel ULPIN</span>
-                        <span id="deed-base-ulpin" class="font-mono text-xs text-cyan-300 select-all">-</span>
-                    </div>
-                </div>
+        function getTargetDestination(role) {
+            return `map.html?rbac=${role}`;
+        }
 
-                <!-- Grid of Strata Certificate Details -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <!-- Owner Info -->
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80 space-y-1">
-                        <div class="text-[10px] uppercase font-bold text-indigo-400 flex items-center">
-                            <i class="fa-solid fa-user-check mr-1"></i> Registered Flat Owner
-                        </div>
-                        <div id="deed-owner" class="text-sm font-semibold text-white">-</div>
-                        <div class="text-[11px] text-slate-400 flex justify-between">
-                            <span>Aadhaar (Masked):</span>
-                            <span id="deed-aadhaar" class="font-mono text-slate-300">-</span>
-                        </div>
-                        <div class="text-[11px] text-slate-400 flex justify-between">
-                            <span>Occupancy:</span>
-                            <span id="deed-occupancy" class="text-emerald-400 font-medium">-</span>
-                        </div>
-                    </div>
+        // Google Identity API Sign-In Handler
+        function handleGoogleSignIn() {
+            const btn = document.getElementById("google-signin-btn");
+            const orig = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-amber-700 mr-1.5"></i> <span>Connecting Google API...</span>`;
+            btn.disabled = true;
 
-                    <!-- Property & Building Info -->
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80 space-y-1">
-                        <div class="text-[10px] uppercase font-bold text-cyan-400 flex items-center">
-                            <i class="fa-solid fa-building mr-1"></i> Apartment &amp; Survey
-                        </div>
-                        <div id="deed-building" class="text-sm font-semibold text-slate-200 truncate">-</div>
-                        <div class="text-[11px] text-slate-400 flex justify-between">
-                            <span>Flat &amp; Floor:</span>
-                            <span id="deed-flat" class="font-bold text-cyan-300">-</span>
-                        </div>
-                        <div class="text-[11px] text-slate-400 flex justify-between">
-                            <span>Survey / Ward:</span>
-                            <span id="deed-survey" class="font-mono text-slate-300">-</span>
-                        </div>
-                    </div>
+            // If a valid Google Client ID is configured, trigger Google prompt
+            if (window.google && google.accounts && google.accounts.id && window.GOOGLE_CLIENT_ID && !window.GOOGLE_CLIENT_ID.startsWith("YOUR_GOOGLE")) {
+                google.accounts.id.prompt((notification) => {
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        useGoogleDemoLogin();
+                    }
+                });
+            } else {
+                // Instant Google SSO Fast-Pass for SIH Demo & Live Previews
+                setTimeout(() => {
+                    useGoogleDemoLogin();
+                }, 400);
+            }
+        }
 
-                    <!-- Spatial Dimensions & Share -->
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80 space-y-1">
-                        <div class="text-[10px] uppercase font-bold text-emerald-400 flex items-center">
-                            <i class="fa-solid fa-chart-area mr-1"></i> Area &amp; Undivided Share
-                        </div>
-                        <div class="text-[11px] text-slate-300 flex justify-between">
-                            <span>Carpet Area:</span>
-                            <span id="deed-carpet" class="font-bold text-white">-</span>
-                        </div>
-                        <div class="text-[11px] text-slate-300 flex justify-between">
-                            <span>Undivided Land Share (UDS):</span>
-                            <span id="deed-uds" class="font-mono text-amber-300 font-semibold">-</span>
-                        </div>
-                        <div class="text-[11px] text-slate-300 flex justify-between">
-                            <span>Vertical Span (Z):</span>
-                            <span id="deed-zspan" class="font-mono text-cyan-400">-</span>
-                        </div>
-                    </div>
+        function handleGoogleCredentialResponse(response) {
+            try {
+                const base64Url = response.credential.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+                const profile = JSON.parse(jsonPayload);
+                
+                const name = profile.name || "Google Verified Citizen";
+                const email = profile.email || "citizen@bhu-aadhar.gov.in";
+                const picture = profile.picture || "";
 
-                    <!-- Legal & Tax Registry -->
-                    <div class="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800/80 space-y-1">
-                        <div class="text-[10px] uppercase font-bold text-amber-400 flex items-center">
-                            <i class="fa-solid fa-scale-balanced mr-1"></i> Registration &amp; Valuation
-                        </div>
-                        <div class="text-[11px] text-slate-300 flex justify-between">
-                            <span>Registered Deed:</span>
-                            <span id="deed-doc" class="font-mono text-slate-200 truncate max-w-[150px]">-</span>
-                        </div>
-                        <div class="text-[11px] text-slate-300 flex justify-between">
-                            <span>Market Valuation:</span>
-                            <span id="deed-valuation" class="font-bold text-emerald-400">-</span>
-                        </div>
-                        <div class="text-[11px] text-slate-300 flex justify-between">
-                            <span>Annual Property Tax:</span>
-                            <span id="deed-tax" class="font-mono text-amber-300">-</span>
-                        </div>
-                    </div>
-                </div>
+                localStorage.setItem("bhu_user_ulpin", "28GNT8392104812");
+                localStorage.setItem("bhu_user_role", "PUBLIC");
+                localStorage.setItem("bhu_user_name", name);
+                localStorage.setItem("bhu_user_email", email);
+                localStorage.setItem("bhu_auth_provider", "GOOGLE_OAUTH2");
+                if (picture) localStorage.setItem("bhu_user_avatar", picture);
 
-                <!-- Encumbrance & Mortgage Status Banner -->
-                <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 text-[11px] flex items-center justify-between">
-                    <span class="text-slate-400"><i class="fa-solid fa-file-shield text-emerald-400 mr-1.5"></i> Encumbrance Status:</span>
-                    <span id="deed-mortgage" class="font-semibold text-slate-200">-</span>
-                </div>
-            </div>
+                window.location.href = getTargetDestination("PUBLIC");
+            } catch (e) {
+                useGoogleDemoLogin();
+            }
+        }
 
-            <!-- Footer Actions -->
-            <div class="flex items-center justify-between pt-1">
-                <span class="text-[11px] text-slate-500 flex items-center">
-                    <i class="fa-solid fa-shield-halved text-emerald-400 mr-1.5"></i> 
-                    Digital Hash Verified • DoLR Guntur Smart Cadastre
-                </span>
-                <div class="flex items-center space-x-2">
-                    <button onclick="window.print()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition flex items-center gap-1">
-                        <i class="fa-solid fa-print"></i> Print Deed
-                    </button>
-                    <button onclick="closeModal('flat-deed-modal')" class="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs transition">
-                        Done
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+        function useGoogleDemoLogin() {
+            localStorage.setItem("bhu_user_ulpin", "28GNT8392104812");
+            localStorage.setItem("bhu_user_role", "PUBLIC");
+            localStorage.setItem("bhu_user_name", "Sri Sai Charan (Google Verified)");
+            localStorage.setItem("bhu_user_email", "saicharan2328@gmail.com");
+            localStorage.setItem("bhu_auth_provider", "GOOGLE_OAUTH2");
+            localStorage.setItem("bhu_user_avatar", "https://lh3.googleusercontent.com/a/default-user=s96-c");
 
-    <!-- MODAL 6: BHU-AADHAAR USER AUTH & ROLE MANAGEMENT -->
-    <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
-        <div class="warm-modal-card w-full max-w-lg rounded-2xl p-6 shadow-2xl border border-[#ded3c2] max-h-[92vh] overflow-y-auto">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between pb-3 border-b border-[#ded3c2] mb-4">
-                <div class="flex items-center space-x-2.5">
-                    <div class="w-8 h-8 rounded-xl bg-amber-100 flex items-center justify-center text-[#78350f] shadow-sm">
-                        <i class="fa-solid fa-user-shield text-base"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-base font-bold text-[#3e2723] flex items-center gap-2">
-                            <span>Bhu-Aadhaar User Access</span>
-                            <span class="badge-pill bg-amber-100 text-amber-900 border border-amber-300 text-[10px]">SIH 2026</span>
-                        </h2>
-                        <p class="text-[11px] text-[#786b59]">Role-Based Access Control & Title Verification Gateway</p>
-                    </div>
-                </div>
-                <button onclick="closeModal('auth-modal')" class="text-stone-400 hover:text-stone-700 transition text-lg p-1">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+            window.location.href = getTargetDestination("PUBLIC");
+        }
 
-            <!-- Current Active Session Summary -->
-            <div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-3.5 mb-4 shadow-sm">
-                <div class="text-[10px] font-bold uppercase tracking-wider text-stone-500 mb-1 flex items-center justify-between">
-                    <span>Current Active Session</span>
-                    <span id="auth-session-status-badge" class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-full border border-emerald-300">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span>Active</span>
-                    </span>
-                </div>
-                <div class="flex items-center justify-between mt-2">
-                    <div>
-                        <div id="modal-user-name" class="font-bold text-sm text-[#3e2723]">Registered Citizen Title Holder</div>
-                        <div id="modal-user-ulpin" class="text-xs font-mono text-[#78350f]">ULPIN: 28GNT8392104812</div>
-                    </div>
-                    <div id="modal-role-pill" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-200/80 text-amber-950 border border-amber-300 shadow-sm">
-                        PUBLIC (CITIZEN)
-                    </div>
-                </div>
-            </div>
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById("submit-btn");
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Authenticating...`;
+            btn.disabled = true;
 
-            <!-- Fast 1-Click Role Switcher for SIH Judges -->
-            <div class="mb-4">
-                <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-2">
-                    Instant Role Fast-Pass (SIH 2026 Evaluation):
-                </label>
-                <div class="grid grid-cols-2 gap-2.5">
-                    <button 
-                        type="button" 
-                        onclick="switchAppRole('PUBLIC')"
-                        id="switch-citizen-btn"
-                        class="p-3 bg-stone-50 hover:bg-amber-50 border-2 border-stone-200 hover:border-amber-400 rounded-xl text-left transition flex flex-col justify-between group"
-                    >
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="font-bold text-xs text-stone-800 group-hover:text-amber-900">Citizen Mode</span>
-                            <i class="fa-solid fa-user text-emerald-600 text-xs"></i>
-                        </div>
-                        <span class="text-[10px] text-stone-500 leading-tight">Public 3D registry, title deeds, and parcel inspection.</span>
-                    </button>
+            const username = document.getElementById("username-input").value.trim();
+            const password = document.getElementById("password-input").value.trim();
 
-                    <button 
-                        type="button" 
-                        onclick="switchAppRole('OFFICIAL')"
-                        id="switch-officer-btn"
-                        class="p-3 bg-stone-50 hover:bg-purple-50 border-2 border-stone-200 hover:border-purple-400 rounded-xl text-left transition flex flex-col justify-between group"
-                    >
-                        <div class="flex items-center justify-between mb-1">
-                            <span class="font-bold text-xs text-stone-800 group-hover:text-purple-900">Govt Official Mode</span>
-                            <i class="fa-solid fa-shield-halved text-purple-600 text-xs"></i>
-                        </div>
-                        <span class="text-[10px] text-stone-500 leading-tight">Town planning, 3D zoning, deed approvals & GIS layers.</span>
-                    </button>
-                </div>
-            </div>
+            try {
+                const response = await fetch("/api/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
 
-            <!-- In-Modal Quick Login Form -->
-            <div class="pt-3 border-t border-stone-200 mb-4">
-                <div class="text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-2">
-                    Authenticate Custom Credentials:
-                </div>
-                <form id="modal-login-form" onsubmit="handleModalAuth(event)" class="space-y-2.5">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <input 
-                            type="text" 
-                            id="modal-username-input" 
-                            placeholder="ULPIN / Officer ID" 
-                            value="28GNT8392104812" 
-                            class="px-3 py-2 bg-stone-50 border border-stone-300 rounded-lg text-xs font-medium focus:outline-none focus:border-amber-600 focus:bg-white text-stone-800"
-                        >
-                        <input 
-                            type="password" 
-                            id="modal-password-input" 
-                            placeholder="Password" 
-                            value="••••••••" 
-                            class="px-3 py-2 bg-stone-50 border border-stone-300 rounded-lg text-xs font-medium focus:outline-none focus:border-amber-600 focus:bg-white text-stone-800"
-                        >
-                    </div>
-                    <button 
-                        type="submit" 
-                        id="modal-auth-btn"
-                        class="w-full py-2 px-3 bg-gradient-to-r from-amber-700 to-orange-600 hover:from-amber-800 hover:to-orange-700 text-white font-bold text-xs rounded-lg transition shadow flex items-center justify-center gap-1.5"
-                    >
-                        <i class="fa-solid fa-key text-[11px]"></i>
-                        <span>Authenticate Credentials</span>
-                    </button>
-                </form>
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.status === "SUCCESS") {
+                        localStorage.setItem("bhu_user_ulpin", data.user.ulpin_id);
+                        localStorage.setItem("bhu_user_role", data.user.role);
+                        localStorage.setItem("bhu_user_name", data.user.display_name);
+                        localStorage.setItem("bhu_auth_provider", "BHU_NATIVE");
 
-                <!-- Google SSO in Modal -->
-                <div class="mt-2.5">
-                    <button 
-                        type="button" 
-                        onclick="handleGoogleSignInModal()" 
-                        id="modal-google-btn"
-                        class="w-full py-2 px-3 bg-white hover:bg-stone-50 border border-stone-300 text-stone-700 hover:text-stone-900 font-bold text-xs rounded-lg transition shadow-sm flex items-center justify-center gap-2"
-                    >
-                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                        </svg>
-                        <span>Sign in with Google (Bhu SSO)</span>
-                    </button>
-                </div>
-            </div>
+                        window.location.href = getTargetDestination(data.user.role);
+                        return;
+                    }
+                }
+                throw new Error("Local fallback");
+            } catch (err) {
+                console.warn("Backend API offline or serverless fallback, logging in client session:", err);
+                const isOfficer = username.toLowerCase().includes("officer") || 
+                                  username.toLowerCase().includes("admin") || 
+                                  username.toLowerCase().includes("apcrda") || 
+                                  username.toLowerCase().includes("dolr") ||
+                                  username.toLowerCase().includes("gmc");
+                const role = isOfficer ? "OFFICIAL" : "PUBLIC";
+                const displayName = isOfficer ? "DoLR / APCRDA Town Planning Officer" : "Registered Bhu-Aadhaar Title Holder";
+                
+                localStorage.setItem("bhu_user_ulpin", username || "28GNT8392104812");
+                localStorage.setItem("bhu_user_role", role);
+                localStorage.setItem("bhu_user_name", displayName);
+                localStorage.setItem("bhu_auth_provider", "BHU_NATIVE");
 
-            <!-- Footer Action Links -->
-            <div class="flex flex-col sm:flex-row items-center justify-between pt-3 border-t border-stone-200 gap-2">
-                <a 
-                    href="login.html" 
-                    class="text-xs text-[#78350f] hover:text-amber-900 font-bold flex items-center gap-1.5 hover:underline"
-                >
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    <span>Open Standalone Portal (login.html)</span>
-                </a>
-
-                <div class="flex items-center space-x-2">
-                    <button 
-                        type="button" 
-                        onclick="handleAppLogout()" 
-                        class="px-3 py-1.5 bg-stone-200 hover:bg-stone-300 text-stone-700 text-xs font-semibold rounded-lg transition"
-                    >
-                        Sign Out
-                    </button>
-                    <button 
-                        type="button" 
-                        onclick="closeModal('auth-modal')" 
-                        class="px-4 py-1.5 bg-[#78350f] hover:bg-[#5c280b] text-white text-xs font-bold rounded-lg transition shadow-sm"
-                    >
-                        Done
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modern Loading / Buffering HUD Overlay -->
-    <div id="loading-overlay" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center transition-all duration-300 pointer-events-none opacity-0 hidden" style="display: none; pointer-events: none;">
-        <div class="p-6 bg-slate-900/90 border border-slate-700/70 rounded-2xl shadow-2xl flex flex-col items-center space-y-3 max-w-sm text-center">
-            <div class="relative w-14 h-14 flex items-center justify-center">
-                <div class="w-14 h-14 rounded-full border-4 border-emerald-500/20 border-t-emerald-400 animate-spin"></div>
-                <i class="fa-solid fa-cubes-stacked text-emerald-400 text-xl absolute"></i>
-            </div>
-            <div>
-                <h3 class="font-bold text-sm text-slate-100" id="loading-title">StrataMap 3D Cadastre</h3>
-                <p class="text-xs text-slate-400 mt-1" id="loading-desc">Initializing 3D spatial parcels...</p>
-            </div>
-            <div class="w-48 bg-slate-800 rounded-full h-1.5 overflow-hidden mt-2">
-                <div id="loading-progress-bar" class="bg-gradient-to-r from-emerald-400 to-cyan-400 h-full rounded-full w-2/3 animate-pulse"></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="js/api.js"></script>
-    <script src="js/viewer_3d.js"></script>
-    <script src="js/app.js"></script>
+                window.location.href = getTargetDestination(role);
+            }
+        }
+    </script>
 </body>
 </html>

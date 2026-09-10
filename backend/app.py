@@ -58,9 +58,9 @@ def serve_login():
 
 @app.route("/map", methods=["GET"])
 @app.route("/dashboard", methods=["GET"])
-@app.route("/index.html", methods=["GET"])
-def serve_index():
-    d, f = find_static_file("index.html")
+@app.route("/map.html", methods=["GET"])
+def serve_map():
+    d, f = find_static_file("map.html")
     return send_from_directory(d, f)
 
 @app.route("/api/registry/pdf", methods=["GET"])

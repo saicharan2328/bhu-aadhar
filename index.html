@@ -2,13 +2,445 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=frontend/login.html">
-    <title>Redirecting to Bhu Aadhar Login...</title>
-    <script>
-        window.location.replace("frontend/login.html" + window.location.search);
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhu Aadhar - Login | 3D ULPIN Land Parcel Identification System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Identity Services (Google Sign-In API SDK) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background-color: #0b0f19;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.08em;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass-auth-card {
+            background: rgba(247, 243, 234, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 199, 172, 0.85);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+        }
+        .glass-preview-card {
+            background: rgba(250, 247, 240, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(220, 206, 185, 0.9);
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
+        }
+        .input-bhu {
+            background: rgba(254, 252, 247, 0.95);
+            border: 1.5px solid #d8caa9;
+            color: #292524;
+            transition: all 0.2s ease;
+        }
+        .input-bhu:focus {
+            outline: none;
+            border-color: #d97706;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18);
+        }
+        /* Realistic waving flag animation */
+        @keyframes subtleWave {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(0.8deg); }
+        }
+        .flag-wave {
+            animation: subtleWave 4s ease-in-out infinite;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+        }
+    </style>
 </head>
-<body style="background:#0b0f19; color:#cbd5e1; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0;">
-    <p>Redirecting to <a href="frontend/login.html" style="color:#f59e0b;">Bhu Aadhar Login Portal</a>...</p>
+<body class="min-h-screen relative flex items-center justify-center overflow-x-hidden">
+
+    <!-- Fullscreen Realistic Aerial City Background -->
+    <div class="absolute inset-0 z-0">
+        <img src="assets/login_bg.jpg" alt="Aerial City 3D View" class="w-full h-full object-cover transform scale-105 filter brightness-95 contrast-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-900/30 to-stone-900/50"></div>
+    </div>
+
+    <!-- Top Left Quick Brand Pill & Map Shortcut -->
+    <header class="absolute top-4 left-4 sm:left-6 z-20 flex items-center space-x-2 sm:space-x-3">
+        <a href="map.html" class="flex items-center space-x-2.5 bg-stone-900/75 hover:bg-stone-900 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-stone-700/60 text-white shadow-lg transition">
+            <!-- Indian Tricolor Mini Badge -->
+            <div class="w-6 h-4 rounded overflow-hidden shadow flex flex-col shrink-0">
+                <div class="h-1/3 bg-[#FF9933]"></div>
+                <div class="h-1/3 bg-white flex items-center justify-center">
+                    <div class="w-1 h-1 rounded-full bg-[#000080]"></div>
+                </div>
+                <div class="h-1/3 bg-[#128807]"></div>
+            </div>
+            <span class="text-xs font-semibold text-stone-200">Bhu Aadhar • SIH 2026</span>
+        </a>
+        <a href="map.html" class="hidden sm:inline-flex items-center gap-1 text-[11px] text-stone-300 hover:text-white bg-stone-900/60 backdrop-blur px-2.5 py-1.5 rounded-full border border-stone-700/40 transition">
+            <i class="fa-solid fa-cube text-amber-400"></i>
+            <span>3D Map Direct</span>
+        </a>
+    </header>
+
+    <!-- Main Authentication Container -->
+    <main class="relative z-10 w-full max-w-[430px] mx-4 my-8">
+        <div class="glass-auth-card rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center shadow-2xl">
+
+            <!-- Waving Indian Flag Badge -->
+            <div class="flag-wave mb-3">
+                <svg width="74" height="48" viewBox="0 0 74 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="rounded shadow-md">
+                    <!-- Saffron Stripe -->
+                    <path d="M0 0C12 2.5 25 -2 37 0C49 2 62 -1.5 74 0V16C62 14.5 49 18 37 16C25 14 12 18.5 0 16V0Z" fill="#FF9933"/>
+                    <!-- White Stripe -->
+                    <path d="M0 16C12 18.5 25 14 37 16C49 18 62 14.5 74 16V32C62 30.5 49 34 37 32C25 30 12 34.5 0 32V16Z" fill="#FFFFFF"/>
+                    <!-- Green Stripe -->
+                    <path d="M0 32C12 34.5 25 30 37 32C49 34 62 30.5 74 32V48C62 46.5 49 50 37 48C25 46 12 50.5 0 48V32Z" fill="#128807"/>
+                    <!-- Ashoka Chakra (Navy Blue 24-spoke wheel) -->
+                    <circle cx="37" cy="24" r="5.5" stroke="#000080" stroke-width="0.9" fill="none"/>
+                    <circle cx="37" cy="24" r="1.1" fill="#000080"/>
+                    <g stroke="#000080" stroke-width="0.5">
+                        <line x1="37" y1="18.8" x2="37" y2="29.2"/>
+                        <line x1="31.8" y1="24" x2="42.2" y2="24"/>
+                        <line x1="33.3" y1="20.3" x2="40.7" y2="27.7"/>
+                        <line x1="33.3" y1="27.7" x2="40.7" y2="20.3"/>
+                        <line x1="34.8" y1="19.2" x2="39.2" y2="28.8"/>
+                        <line x1="32.2" y1="21.8" x2="41.8" y2="26.2"/>
+                        <line x1="39.2" y1="19.2" x2="34.8" y2="28.8"/>
+                        <line x1="41.8" y1="21.8" x2="32.2" y2="26.2"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="text-2xl sm:text-3xl font-cinzel font-extrabold text-[#78350f] tracking-wider leading-none mb-1.5">
+                BHU AADHAR
+            </h1>
+            <p class="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#92400e] uppercase mb-4">
+                LAND PARCEL IDENTIFICATION SYSTEM • SIH 2026
+            </p>
+
+            <!-- Login Form -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="w-full space-y-3 text-left">
+                
+                <!-- ULPIN ID / Username Input -->
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-1">
+                        Identity / ULPIN / Username
+                    </label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-3.5 text-stone-500 text-sm">
+                            <i class="fa-regular fa-user"></i>
+                        </span>
+                        <input 
+                            type="text" 
+                            id="username-input" 
+                            required
+                            placeholder="ULPIN ID / Username / Email" 
+                            value="28GNT8392104812"
+                            class="input-bhu w-full rounded-xl py-2.5 pl-10 pr-3 text-xs sm:text-sm font-medium placeholder-stone-400"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-1">
+                        Security Password
+                    </label>
+                    <div class="relative flex items-center">
+                        <span class="absolute left-3.5 text-stone-500 text-sm">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input 
+                            type="password" 
+                            id="password-input" 
+                            required
+                            placeholder="Password" 
+                            value="••••••••"
+                            class="input-bhu w-full rounded-xl py-2.5 pl-10 pr-10 text-xs sm:text-sm font-medium placeholder-stone-400"
+                        >
+                        <button type="button" onclick="togglePassword()" class="absolute right-3 text-stone-400 hover:text-stone-600 transition text-xs" title="Toggle password visibility">
+                            <i id="eye-icon" class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-center mt-1 text-[11px]">
+                        <span class="text-stone-400">Demo active</span>
+                        <a href="javascript:void(0)" onclick="alert('For SIH 2026 Demo: Use any 14-digit ULPIN ID (e.g. 28GNT8392104812), Sign in with Google, or click Quick Fast-Pass buttons below.')" class="text-stone-500 hover:text-amber-800 transition font-medium">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sign In Button (Warm Amber Gradient) -->
+                <button 
+                    type="submit" 
+                    id="submit-btn"
+                    class="w-full py-3 px-4 rounded-xl text-white font-bold text-sm bg-gradient-to-r from-amber-700 via-amber-600 to-orange-600 hover:from-amber-800 hover:to-orange-700 active:scale-[0.99] transition shadow-md shadow-amber-900/25 flex items-center justify-center space-x-2 mt-1"
+                >
+                    <span>Sign In & Open 3D Cadastre</span>
+                    <i class="fa-solid fa-angles-right text-xs"></i>
+                </button>
+
+                <!-- Google API Sign-In Integration -->
+                <div class="relative flex items-center my-2">
+                    <div class="flex-grow border-t border-stone-300"></div>
+                    <span class="flex-shrink mx-2 text-[10px] uppercase font-bold text-stone-400">OR</span>
+                    <div class="flex-grow border-t border-stone-300"></div>
+                </div>
+
+                <button 
+                    type="button" 
+                    onclick="handleGoogleSignIn()"
+                    id="google-signin-btn"
+                    class="w-full py-2.5 px-3 rounded-xl text-stone-700 hover:text-stone-900 font-bold text-xs bg-white hover:bg-stone-50 border border-stone-300 shadow-sm hover:shadow transition flex items-center justify-center space-x-2"
+                >
+                    <!-- Official Google G SVG -->
+                    <svg class="w-4 h-4" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <span>Sign in with Google (Bhu SSO)</span>
+                    <span class="text-[9px] font-mono text-emerald-800 bg-emerald-50 px-1 py-0.5 rounded border border-emerald-200">OAuth 2.0</span>
+                </button>
+
+                <!-- Quick Role Selector / Judge Fast-Pass -->
+                <div class="pt-2.5 border-t border-stone-300/80">
+                    <span class="block text-center text-[10px] uppercase font-bold tracking-wider text-stone-500 mb-1.5">
+                        Quick Demo Fast-Pass (SIH 2026):
+                    </span>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button 
+                            type="button" 
+                            onclick="useDemoLogin('PUBLIC')"
+                            class="py-1.5 px-2 bg-amber-50 hover:bg-amber-100 border border-amber-300/80 rounded-xl text-[11px] font-bold text-amber-900 text-center transition flex items-center justify-center gap-1.5 shadow-sm"
+                        >
+                            <i class="fa-solid fa-user-check text-emerald-600 text-xs"></i>
+                            <span>Citizen View</span>
+                        </button>
+                        <button 
+                            type="button" 
+                            onclick="useDemoLogin('OFFICIAL')"
+                            class="py-1.5 px-2 bg-purple-50 hover:bg-purple-100 border border-purple-300/80 rounded-xl text-[11px] font-bold text-purple-900 text-center transition flex items-center justify-center gap-1.5 shadow-sm"
+                        >
+                            <i class="fa-solid fa-shield-halved text-purple-600 text-xs"></i>
+                            <span>Govt Officer</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Direct Guest Access / Skip Link -->
+                <div class="pt-1.5 text-center">
+                    <a href="map.html" class="inline-flex items-center gap-1.5 text-xs text-stone-600 hover:text-[#78350f] font-semibold transition py-0.5">
+                        <span>Continue to 3D Cadastre as Guest</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Bottom Left Floating Telemetry Preview Card -->
+    <aside class="absolute bottom-5 left-6 z-20 hidden md:block max-w-[340px]">
+        <div class="glass-preview-card rounded-2xl p-3.5 shadow-xl text-stone-900">
+            <div class="flex items-center space-x-1.5 mb-2.5">
+                <span class="text-amber-700 text-xs">◆</span>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-stone-800">
+                    DASHBOARD PREVIEW
+                </h3>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+                <!-- Unit Card Box -->
+                <div class="bg-amber-50/70 border border-amber-200/80 rounded-lg p-2 flex flex-col justify-between">
+                    <div class="flex items-center justify-between text-stone-700">
+                        <span class="font-bold text-stone-900">Flat 601</span>
+                        <span>Flr 1</span>
+                        <span>1227 sq.ft</span>
+                    </div>
+                    <div class="text-[10px] text-stone-500 mt-1">
+                        UDS: <strong class="text-stone-800">41.3 sq.yd</strong>
+                    </div>
+                    <div class="mt-1.5 pt-1 border-t border-amber-200/60 font-medium text-stone-800 truncate flex items-center gap-1">
+                        <i class="fa-solid fa-user text-[9px] text-amber-700"></i>
+                        <span>T. Ramesh Babu</span>
+                    </div>
+                </div>
+
+                <!-- Coverage Metrics Box -->
+                <div class="bg-white/70 border border-stone-200 rounded-lg p-2 flex flex-col justify-center">
+                    <span class="text-[10px] uppercase text-stone-500 font-semibold">Area Registered</span>
+                    <span class="font-bold font-mono text-emerald-800 text-sm mt-0.5">3,824,648 m³</span>
+                    <span class="text-[10px] text-stone-600 mt-0.5">714 Pieces • 70 Wards</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Bottom Right System Badge -->
+    <div class="absolute bottom-4 right-6 z-20 hidden sm:flex items-center space-x-2 text-[11px] text-stone-300 bg-stone-950/70 backdrop-blur px-3 py-1.5 rounded-full border border-stone-800">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Guntur Urban Mandal • 3D Cadastre v1.0</span>
+    </div>
+
+    <!-- Script Handling Login, Google Identity API & Session Navigation -->
+    <script>
+        // Google Identity Services Configuration
+        window.GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID_OR_API_KEY.apps.googleusercontent.com";
+
+        window.onload = function () {
+            if (window.google && google.accounts && google.accounts.id) {
+                google.accounts.id.initialize({
+                    client_id: window.GOOGLE_CLIENT_ID,
+                    callback: handleGoogleCredentialResponse,
+                    auto_select: false
+                });
+            }
+        };
+
+        function togglePassword() {
+            const pwd = document.getElementById("password-input");
+            const eye = document.getElementById("eye-icon");
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                eye.classList.remove("fa-eye");
+                eye.classList.add("fa-eye-slash");
+            } else {
+                pwd.type = "password";
+                eye.classList.remove("fa-eye-slash");
+                eye.classList.add("fa-eye");
+            }
+        }
+
+        function useDemoLogin(role) {
+            if (role === "OFFICIAL") {
+                document.getElementById("username-input").value = "APCRDA-GMC-OFFICER-01";
+                document.getElementById("password-input").value = "OfficialPass@2026";
+            } else {
+                document.getElementById("username-input").value = "28GNT8392104812";
+                document.getElementById("password-input").value = "CitizenPass@2026";
+            }
+            document.getElementById("login-form").dispatchEvent(new Event('submit'));
+        }
+
+        function getTargetDestination(role) {
+            return `map.html?rbac=${role}`;
+        }
+
+        // Google Identity API Sign-In Handler
+        function handleGoogleSignIn() {
+            const btn = document.getElementById("google-signin-btn");
+            const orig = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-amber-700 mr-1.5"></i> <span>Connecting Google API...</span>`;
+            btn.disabled = true;
+
+            // If a valid Google Client ID is configured, trigger Google prompt
+            if (window.google && google.accounts && google.accounts.id && window.GOOGLE_CLIENT_ID && !window.GOOGLE_CLIENT_ID.startsWith("YOUR_GOOGLE")) {
+                google.accounts.id.prompt((notification) => {
+                    if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                        useGoogleDemoLogin();
+                    }
+                });
+            } else {
+                // Instant Google SSO Fast-Pass for SIH Demo & Live Previews
+                setTimeout(() => {
+                    useGoogleDemoLogin();
+                }, 400);
+            }
+        }
+
+        function handleGoogleCredentialResponse(response) {
+            try {
+                const base64Url = response.credential.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+                const profile = JSON.parse(jsonPayload);
+                
+                const name = profile.name || "Google Verified Citizen";
+                const email = profile.email || "citizen@bhu-aadhar.gov.in";
+                const picture = profile.picture || "";
+
+                localStorage.setItem("bhu_user_ulpin", "28GNT8392104812");
+                localStorage.setItem("bhu_user_role", "PUBLIC");
+                localStorage.setItem("bhu_user_name", name);
+                localStorage.setItem("bhu_user_email", email);
+                localStorage.setItem("bhu_auth_provider", "GOOGLE_OAUTH2");
+                if (picture) localStorage.setItem("bhu_user_avatar", picture);
+
+                window.location.href = getTargetDestination("PUBLIC");
+            } catch (e) {
+                useGoogleDemoLogin();
+            }
+        }
+
+        function useGoogleDemoLogin() {
+            localStorage.setItem("bhu_user_ulpin", "28GNT8392104812");
+            localStorage.setItem("bhu_user_role", "PUBLIC");
+            localStorage.setItem("bhu_user_name", "Sri Sai Charan (Google Verified)");
+            localStorage.setItem("bhu_user_email", "saicharan2328@gmail.com");
+            localStorage.setItem("bhu_auth_provider", "GOOGLE_OAUTH2");
+            localStorage.setItem("bhu_user_avatar", "https://lh3.googleusercontent.com/a/default-user=s96-c");
+
+            window.location.href = getTargetDestination("PUBLIC");
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById("submit-btn");
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Authenticating...`;
+            btn.disabled = true;
+
+            const username = document.getElementById("username-input").value.trim();
+            const password = document.getElementById("password-input").value.trim();
+
+            try {
+                const response = await fetch("/api/auth/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.status === "SUCCESS") {
+                        localStorage.setItem("bhu_user_ulpin", data.user.ulpin_id);
+                        localStorage.setItem("bhu_user_role", data.user.role);
+                        localStorage.setItem("bhu_user_name", data.user.display_name);
+                        localStorage.setItem("bhu_auth_provider", "BHU_NATIVE");
+
+                        window.location.href = getTargetDestination(data.user.role);
+                        return;
+                    }
+                }
+                throw new Error("Local fallback");
+            } catch (err) {
+                console.warn("Backend API offline or serverless fallback, logging in client session:", err);
+                const isOfficer = username.toLowerCase().includes("officer") || 
+                                  username.toLowerCase().includes("admin") || 
+                                  username.toLowerCase().includes("apcrda") || 
+                                  username.toLowerCase().includes("dolr") ||
+                                  username.toLowerCase().includes("gmc");
+                const role = isOfficer ? "OFFICIAL" : "PUBLIC";
+                const displayName = isOfficer ? "DoLR / APCRDA Town Planning Officer" : "Registered Bhu-Aadhaar Title Holder";
+                
+                localStorage.setItem("bhu_user_ulpin", username || "28GNT8392104812");
+                localStorage.setItem("bhu_user_role", role);
+                localStorage.setItem("bhu_user_name", displayName);
+                localStorage.setItem("bhu_auth_provider", "BHU_NATIVE");
+
+                window.location.href = getTargetDestination(role);
+            }
+        }
+    </script>
 </body>
 </html>
