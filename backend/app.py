@@ -7,6 +7,12 @@ frontend 3D Web visualization and legacy 2D portals.
 """
 
 import os
+import sys
+
+backend_dir = os.path.dirname(os.path.abspath(__file__))
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
@@ -16,7 +22,7 @@ from topology_validator import Topology3DValidator
 from db import db_instance, POSTGIS_3D_SCHEMA_SQL
 from seed_data import seed_demo_database
 
-frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
+frontend_dir = os.path.abspath(os.path.join(backend_dir, "..", "frontend"))
 app = Flask(__name__, static_folder=frontend_dir, static_url_path="")
 CORS(app)  # Enable Cross-Origin Resource Sharing for Web Dashboard
 
