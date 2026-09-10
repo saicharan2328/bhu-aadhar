@@ -499,16 +499,16 @@ class Viewer3D {
         this.lastSelectedTime = 0;
 
         const getCoords = (e) => {
-            if (e.clientX !== undefined && e.clientX !== null && e.clientX !== 0) {
-                return { x: e.clientX, y: e.clientY };
-            }
             if (e.changedTouches && e.changedTouches.length > 0) {
                 return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
             }
             if (e.touches && e.touches.length > 0) {
                 return { x: e.touches[0].clientX, y: e.touches[0].clientY };
             }
-            return { x: e.clientX || 0, y: e.clientY || 0 };
+            if (typeof e.clientX === "number") {
+                return { x: e.clientX, y: e.clientY };
+            }
+            return { x: 0, y: 0 };
         };
 
         // Cancel camera animation if user manually moves map
@@ -543,12 +543,12 @@ class Viewer3D {
             this.pointerDownPos = null;
 
             const isTouch = (e.pointerType === "touch") || (e.type && e.type.startsWith("touch")) || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
-            const maxDist = isTouch ? 24 : 9;
-            const maxTime = isTouch ? 650 : 450;
+            const maxDist = isTouch ? 28 : 10;
+            const maxTime = isTouch ? 700 : 450;
             const isLeftOrTouch = (e.button === 0 || e.button === -1 || e.button === undefined || isTouch);
 
             if (isLeftOrTouch && dist <= maxDist && elapsed <= maxTime) {
-                this.handleCanvasClickAt(c.x, c.y);
+                this.handleCanvasClickAt(c.x, c.y, true);
             }
         };
 
@@ -560,7 +560,7 @@ class Viewer3D {
             if (e.button === 0) {
                 const now = performance.now();
                 if (now - this.lastSelectedTime > 250) {
-                    this.handleCanvasClickAt(e.clientX, e.clientY);
+                    this.handleCanvasClickAt(e.clientX, e.clientY, true);
                 }
             }
         });
@@ -603,10 +603,10 @@ class Viewer3D {
         if (!event) return;
         const clientX = event.clientX !== undefined ? event.clientX : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientX : (event.touches && event.touches[0] ? event.touches[0].clientX : 0));
         const clientY = event.clientY !== undefined ? event.clientY : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientY : (event.touches && event.touches[0] ? event.touches[0].clientY : 0));
-        this.handleCanvasClickAt(clientX, clientY);
+        this.handleCanvasClickAt(clientX, clientY, true);
     }
 
-    handleCanvasClickAt(clientX, clientY) {
+    handleCanvasClickAt(clientX, clientY, autoFly = true) {
         if (clientX === undefined || clientY === undefined) return;
         const rect = this.renderer.domElement.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) return;
@@ -624,6 +624,9 @@ class Viewer3D {
                 if (match) {
                     this.lastSelectedTime = performance.now();
                     this.highlightParcel(match.mesh);
+                    if (autoFly && match.parcel) {
+                        this.flyToParcel(match.parcel, 60);
+                    }
                     if (window.onParcelSelected) {
                         window.onParcelSelected(match.parcel);
                     }
