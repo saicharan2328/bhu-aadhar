@@ -309,5 +309,11 @@ def extrude_guntur_2d():
 
 
 if __name__ == "__main__":
-    print("Starting StrataMap 3D ULPIN REST Server on http://127.0.0.1:5000")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    import argparse
+    parser = argparse.ArgumentParser(description="StrataMap 3D ULPIN REST Server")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", 5000)), help="Port to listen on")
+    parser.add_argument("--host", type=str, default="0.0.0.0", help="Host IP to bind to")
+    args, _ = parser.parse_known_args()
+
+    print(f"Starting StrataMap 3D ULPIN REST Server on http://127.0.0.1:{args.port} (Host: {args.host})")
+    app.run(host=args.host, port=args.port, debug=True)
