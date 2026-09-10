@@ -884,18 +884,41 @@ async function handleModalAuth(event) {
     }
 }
 
+function handleGoogleSignInModal() {
+    const btn = document.getElementById("modal-google-btn");
+    const orig = btn ? btn.innerHTML : "";
+    if (btn) {
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin text-amber-700 mr-1.5"></i> <span>Connecting Google API...</span>`;
+        btn.disabled = true;
+    }
+
+    setTimeout(() => {
+        localStorage.setItem("bhu_user_ulpin", "28GNT8392104812");
+        localStorage.setItem("bhu_user_role", "PUBLIC");
+        localStorage.setItem("bhu_user_name", "Sri Sai Charan (Google Verified)");
+        localStorage.setItem("bhu_user_email", "saicharan2328@gmail.com");
+        localStorage.setItem("bhu_auth_provider", "GOOGLE_OAUTH2");
+        localStorage.setItem("bhu_user_avatar", "https://lh3.googleusercontent.com/a/default-user=s96-c");
+
+        updateAuthModalUI();
+        setRBAC("PUBLIC");
+        closeModal('auth-modal');
+        if (btn) {
+            btn.innerHTML = orig;
+            btn.disabled = false;
+        }
+    }, 450);
+}
+
 function handleAppLogout() {
     localStorage.removeItem("bhu_user_ulpin");
     localStorage.removeItem("bhu_user_role");
     localStorage.removeItem("bhu_user_name");
+    localStorage.removeItem("bhu_user_email");
+    localStorage.removeItem("bhu_auth_provider");
+    localStorage.removeItem("bhu_user_avatar");
 
-    localStorage.setItem("bhu_user_role", "PUBLIC");
-    localStorage.setItem("bhu_user_name", "Citizen");
-    localStorage.setItem("bhu_user_ulpin", "28GNT8392104812");
-
-    updateAuthModalUI();
-    setRBAC("PUBLIC");
-    closeModal("auth-modal");
+    window.location.href = "login.html";
 }
 
 function toggle2DCadastreBase(checked) {
