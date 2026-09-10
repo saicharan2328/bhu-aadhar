@@ -43,6 +43,20 @@ def serve_index():
 def serve_login():
     return send_from_directory(frontend_dir, "login.html")
 
+@app.route("/api/registry/pdf", methods=["GET"])
+@app.route("/download-registry-pdf", methods=["GET"])
+def download_registry_pdf():
+    project_root = os.path.dirname(backend_dir)
+    pdf_filename = "guntur_3d_ulpin_property_registry.pdf"
+    pdf_path = os.path.join(project_root, pdf_filename)
+    if not os.path.exists(pdf_path):
+        try:
+            from scripts.generate_cadastre_pdf import build_pdf
+            build_pdf()
+        except Exception:
+            pass
+    return send_from_directory(project_root, pdf_filename, as_attachment=False)
+
 @app.route("/api/auth/login", methods=["POST"])
 def auth_login():
     data = request.json or {}
